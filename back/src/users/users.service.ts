@@ -5,11 +5,14 @@ import { LoginUserDto } from "./dto/login-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { User } from "./entities/user.entity";
 import * as bcrypt from "bcrypt";
+import { forwardRef } from "@nestjs/common/utils";
+import { AuthService } from "src/auth/auth.service";
 
 @Injectable()
 export class UsersService {
   constructor(
     @Inject("USER_REPOSITORY")
+    private authService: AuthService,
     private userRepository: Repository<User>
   ) {}
 
@@ -39,9 +42,8 @@ export class UsersService {
   }
 
   async login(loginUserDto: LoginUserDto) {
-    // const { email, password } = loginUserDto;
-    // return this.userRepository.findOneBy({ email });
-    return loginUserDto;
+    const { email, password } = loginUserDto;
+    return this.userRepository.findOneBy({ email });
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {

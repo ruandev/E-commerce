@@ -8,6 +8,7 @@ import {
   UseGuards,
 } from "@nestjs/common";
 import { Get } from "@nestjs/common/decorators/http/request-mapping.decorator";
+import { AuthService } from "src/auth/auth.service";
 import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
 import { LocalAuthGuard } from "src/auth/local-auth.guard";
 import { CreateUserDto } from "./dto/create-user.dto";
@@ -17,7 +18,10 @@ import { UsersService } from "./users.service";
 
 @Controller()
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly authService: AuthService
+  ) {}
 
   @Post("cadaster")
   create(@Body() createUserDto: CreateUserDto) {
