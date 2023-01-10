@@ -1,0 +1,27 @@
+{
+  "prettier/prettier": [
+    "error",
+    {
+      "endOfLine":"auto"
+    },
+    {
+      "parser": "flow"
+    },
+    {
+      "usePrettierrc": true
+    },
+    {
+      "fileInfoOptions": {
+        "withNodeModules": true
+      }
+
+    }
+  ],
+  "semi": true,
+  "singleQuote": false,
+  "tabWidth": 2,
+  "useTabs": false,
+  "bracketSpacing": true,
+  "jsxBracketSameLine": false,
+  "printWidth": 80
+}
