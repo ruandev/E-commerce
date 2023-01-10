@@ -39,8 +39,9 @@ export class UsersService {
   }
 
   async login(loginUserDto: LoginUserDto) {
-    const { email, password } = loginUserDto;
-    return this.userRepository.findOneBy({ email });
+    // const { email, password } = loginUserDto;
+    // return this.userRepository.findOneBy({ email });
+    return loginUserDto;
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
