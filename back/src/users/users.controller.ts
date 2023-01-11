@@ -30,8 +30,8 @@ export class UsersController {
 
   @Post("login")
   @UseGuards(LocalAuthGuard)
-  login(@Body() loginUserDto: LoginUserDto) {
-    return this.authService.login(loginUserDto);
+  login(@Request() req) {
+    return this.authService.login(req);
   }
 
   @Patch("update/:id")

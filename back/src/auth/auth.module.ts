@@ -12,7 +12,7 @@ import { forwardRef } from "@nestjs/common/utils";
     forwardRef(() => UsersModule),
     PassportModule,
     JwtModule.register({
-      secret: process.env.JWT_PASS,
+      secret: 'batatinha',
       signOptions: { expiresIn: "2h" },
     }),
   ],
