@@ -33,7 +33,7 @@ export class Product {
   @JoinColumn({ name: "category_id" })
   category: Category;
 
-  @OneToMany(() => Merchant, (merchant) => merchant.id)
+  @ManyToOne(() => Merchant, (merchant) => merchant.id)
   @JoinColumn({ name: "merchant_id" })
   merchant: Merchant;
 

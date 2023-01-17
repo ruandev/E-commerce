@@ -4,7 +4,7 @@ import {
   Column,
   Entity,
   JoinColumn,
-  ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
@@ -21,6 +21,6 @@ export class Merchant {
   @JoinColumn({ name: "user_id" })
   user: User;
 
-  @ManyToOne(() => Product, (product) => product.merchant)
+  @OneToMany(() => Product, (product) => product.merchant)
   product: Product;
 }
