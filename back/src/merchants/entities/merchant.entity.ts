@@ -22,5 +22,5 @@ export class Merchant {
   user: User;
 
   @OneToMany(() => Product, (product) => product.merchant)
-  product: Product;
+  product: Product[];
 }

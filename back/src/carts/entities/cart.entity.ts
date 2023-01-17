@@ -24,7 +24,7 @@ export class Cart {
 
   @OneToMany(() => PaymentMethod, (payment_method) => payment_method.id)
   @JoinColumn({ name: "payment_method" })
-  payment_method: PaymentMethod;
+  payment_method: PaymentMethod[];
 
   @OneToMany(() => CartProduct, (cart_product) => cart_product.cart)
   cart_product: CartProduct[];
