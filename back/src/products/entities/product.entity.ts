@@ -38,7 +38,7 @@ export class Product {
   merchant: Merchant;
 
   @OneToMany(() => CartProduct, (cart_product) => cart_product.product)
-  cart_product: CartProduct;
+  cart_product: CartProduct[];
 
   @OneToOne(() => ProductImage, (product_image) => product_image.product)
   product_image: ProductImage;

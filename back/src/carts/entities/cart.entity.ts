@@ -27,5 +27,5 @@ export class Cart {
   payment_method: PaymentMethod;
 
   @OneToMany(() => CartProduct, (cart_product) => cart_product.cart)
-  cart_product: CartProduct;
+  cart_product: CartProduct[];
 }
