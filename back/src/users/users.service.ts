@@ -32,6 +32,38 @@ export class UsersService {
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
-    return id;
+    const { email, password } = updateUserDto;
+
+    try {
+      const user = await this.userRepository.findOneBy({ id });
+
+      if (email) {
+        const validationEmail = await this.userRepository.findOneBy({ email });
+        if (validationEmail && validationEmail.email !== user.email)
+          return "E-mail já cadastrado!";
+      }
+
+      if (password) {
+        updateUserDto.password = await bcrypt.hash(password, 10);
+      }
+
+      const updateUser = await this.userRepository.update(id, updateUserDto);
+
+      return updateUser;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async remove(id: string) {
+    try {
+      const user = await this.userRepository.findOneBy({ id });
+
+      const deleteUser = await this.userRepository.remove(user);
+
+      return deleteUser;
+    } catch (error) {
+      return error;
+    }
   }
 }

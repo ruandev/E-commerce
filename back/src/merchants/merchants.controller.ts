@@ -15,19 +15,17 @@ import { UpdateMerchantDto } from "./dto/update-merchant.dto";
 export class MerchantsController {
   constructor(private readonly merchantsService: MerchantsService) {}
 
-  @Post()
-  create(@Body() createMerchantDto: CreateMerchantDto) {
-    return this.merchantsService.create(createMerchantDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.merchantsService.findAll();
+  @Post("cadaster")
+  create(
+    @Param("id") id: string,
+    @Body() createMerchantDto: CreateMerchantDto
+  ) {
+    return this.merchantsService.create(id, createMerchantDto);
   }
 
   @Get(":id")
   findOne(@Param("id") id: string) {
-    return this.merchantsService.findOne(+id);
+    return this.merchantsService.findOne(id);
   }
 
   @Patch(":id")
@@ -35,11 +33,11 @@ export class MerchantsController {
     @Param("id") id: string,
     @Body() updateMerchantDto: UpdateMerchantDto
   ) {
-    return this.merchantsService.update(+id, updateMerchantDto);
+    return this.merchantsService.update(id, updateMerchantDto);
   }
 
   @Delete(":id")
   remove(@Param("id") id: string) {
-    return this.merchantsService.remove(+id);
+    return this.merchantsService.remove(id);
   }
 }

@@ -1,4 +1,5 @@
-import { PartialType } from "@nestjs/mapped-types";
-import { CreateMerchantDto } from "./create-merchant.dto";
-
-export class UpdateMerchantDto extends PartialType(CreateMerchantDto) {}
+import { IsString } from "class-validator";
+export class UpdateMerchantDto {
+  @IsString()
+  store_name: string;
+}

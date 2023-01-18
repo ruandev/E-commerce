@@ -22,7 +22,5 @@ import { CategoriesModule } from "./categories/categories.module";
     ProductImagesModule,
     CategoriesModule,
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}

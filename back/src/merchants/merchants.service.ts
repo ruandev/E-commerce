@@ -1,26 +1,73 @@
-import { Injectable } from "@nestjs/common";
+import { Inject, Injectable } from "@nestjs/common";
 import { CreateMerchantDto } from "./dto/create-merchant.dto";
 import { UpdateMerchantDto } from "./dto/update-merchant.dto";
-
+import { Merchant } from "./entities/merchant.entity";
+import { Repository } from "typeorm";
 @Injectable()
 export class MerchantsService {
-  create(createMerchantDto: CreateMerchantDto) {
-    return "This action adds a new merchant";
+  constructor(
+    @Inject("MERCHANT_REPOSITORY")
+    private merchantRepository: Repository<Merchant>
+  ) {}
+
+  async create(id: string, createMerchantDto: CreateMerchantDto) {
+    const { store_name } = createMerchantDto;
+
+    try {
+      const storeNameValidation = await this.merchantRepository.findOneBy({
+        store_name,
+      });
+      if (storeNameValidation)
+        return "Esse nome já está sendo utilizado por outra loja";
+
+      const user = {
+        store_name,
+        user_id: id,
+      };
+
+      await this.merchantRepository.insert(user);
+
+      return user;
+    } catch (error) {
+      return error;
+    }
   }
 
-  findAll() {
-    return `This action returns all merchants`;
+  async findOne(id: string) {
+    try {
+      return await this.merchantRepository.findOneBy({ id });
+    } catch (error) {
+      return error;
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} merchant`;
+  async update(id: string, updateMerchantDto: UpdateMerchantDto) {
+    const { store_name } = updateMerchantDto;
+
+    try {
+      const merchant = await this.merchantRepository.findOneBy({ id });
+
+      if (store_name) {
+        const findStoreName = await this.merchantRepository.findOneBy({
+          store_name,
+        });
+        if (findStoreName && findStoreName.store_name !== merchant.store_name)
+          return "Nome de loja já utilizado";
+      }
+    } catch (error) {
+      return error;
+    }
   }
 
-  update(id: number, updateMerchantDto: UpdateMerchantDto) {
-    return `This action updates a #${id} merchant`;
-  }
+  async remove(id: string) {
+    try {
+      const merchant = await this.merchantRepository.findOneBy({ id });
 
-  remove(id: number) {
-    return `This action removes a #${id} merchant`;
+      const deleteMerchant = await this.merchantRepository.remove(merchant);
+
+      return deleteMerchant;
+    } catch (error) {
+      return error;
+    }
   }
 }
