@@ -3,13 +3,26 @@ import { CreateProductDto } from "./dto/create-product.dto";
 import { UpdateProductDto } from "./dto/update-product.dto";
 import { Product } from "./entities/product.entity";
 import { Repository } from "typeorm";
-
+import { uploadFile } from "../aws/storage";
 @Injectable()
 export class ProductsService {
   constructor(
     @Inject("PRODUCT_REPOSITORY")
     private productRepository: Repository<Product>
   ) {}
+
+  async uploadImage(file: any) {
+    try {
+      const image = await uploadFile(
+        `images/${file.originalname}`,
+        file.buffer,
+        file.mimetype
+      );
+      return image;
+    } catch (error) {
+      return error;
+    }
+  }
 
   async create(createProductDto: CreateProductDto) {
     try {

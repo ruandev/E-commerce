@@ -2,7 +2,7 @@ import { IsNumber, IsString } from "class-validator";
 
 export class CreateProductDto {
   @IsString()
-  titile: string;
+  title: string;
 
   @IsString()
   product_description: string;
@@ -12,6 +12,9 @@ export class CreateProductDto {
 
   @IsNumber()
   stock: number;
+
+  @IsString()
+  url: string;
 
   @IsNumber()
   category_id: number;

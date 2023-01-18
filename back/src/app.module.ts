@@ -1,17 +1,18 @@
 import { Module } from "@nestjs/common";
-import { UsersModule } from "./users/users.module";
 import { ConfigModule } from "@nestjs/config";
 import { AuthModule } from "./auth/auth.module";
-import { CartsModule } from "./carts/carts.module";
-import { MerchantsModule } from "./merchants/merchants.module";
 import { CartProductsModule } from "./cart-products/cart-products.module";
-import { ProductsModule } from "./products/products.module";
-import { PaymentMethodModule } from "./payment-method/payment-method.module";
-import { ProductImagesModule } from "./product-images/product-images.module";
+import { CartsModule } from "./carts/carts.module";
 import { CategoriesModule } from "./categories/categories.module";
+import { MerchantsModule } from "./merchants/merchants.module";
+import { PaymentMethodModule } from "./payment-method/payment-method.module";
+import { ProductsModule } from "./products/products.module";
+import { UsersModule } from "./users/users.module";
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     UsersModule,
     AuthModule,
     CartsModule,
@@ -19,7 +20,6 @@ import { CategoriesModule } from "./categories/categories.module";
     CartProductsModule,
     ProductsModule,
     PaymentMethodModule,
-    ProductImagesModule,
     CategoriesModule,
   ],
 })

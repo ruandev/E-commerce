@@ -1,11 +1,14 @@
 import { Cart } from "src/carts/entities/cart.entity";
 import { Product } from "src/products/entities/product.entity";
-import { Column, Entity } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { JoinColumn } from "typeorm/decorator/relations/JoinColumn";
 import { ManyToOne } from "typeorm/decorator/relations/ManyToOne";
 
 @Entity("cart_products")
 export class CartProduct {
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
+
   @Column({ type: "int" })
   quantity: number;
 

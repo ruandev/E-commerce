@@ -1,5 +1,6 @@
 import { Module } from "@nestjs/common";
 import { forwardRef } from "@nestjs/common/utils";
+import { ConfigModule } from "@nestjs/config";
 import { JwtModule } from "@nestjs/jwt";
 import { PassportModule } from "@nestjs/passport";
 import { CategoriesModule } from "src/categories/categories.module";
