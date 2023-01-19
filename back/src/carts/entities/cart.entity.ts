@@ -1,6 +1,6 @@
-import { CartProduct } from "src/cart-products/entities/cart-product.entity";
-import { PaymentMethod } from "src/payment-method/entities/payment-method.entity";
-import { User } from "src/users/entities/user.entity";
+import { CartProduct } from "../../cart-products/entities/cart-product.entity";
+import { PaymentMethod } from "../../payment-method/entities/payment-method.entity";
+import { User } from "../../users/entities/user.entity";
 import {
   Column,
   Entity,

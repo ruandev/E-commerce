@@ -22,8 +22,8 @@ export class ProductsController {
   @Post("upload")
   @UseInterceptors(FileInterceptor("file"))
   @Bind(UploadedFile())
-  uploadFile(file: any) {
-    return this.productsService.uploadImage(file);
+  uploadFile(@Param("id") id: string, file: any) {
+    return this.productsService.uploadImage(id, file);
   }
 
   @Post()

@@ -1,10 +1,11 @@
 import { Module } from "@nestjs/common";
-import { CategoriesService } from "./categories.service";
-import { CategoriesController } from "./categories.controller";
-import { DatabaseModule } from "src/database/database.module";
-import { AuthModule } from "src/auth/auth.module";
-import { categoryProviders } from "./providers/category.providers";
 import { forwardRef } from "@nestjs/common/utils";
+import { AuthModule } from "src/auth/auth.module";
+import { DatabaseModule } from "src/database/database.module";
+import { CategoriesController } from "./categories.controller";
+import { CategoriesService } from "./categories.service";
+import { categoryProviders } from "./providers/category.providers";
+
 @Module({
   imports: [DatabaseModule, forwardRef(() => AuthModule)],
   controllers: [CategoriesController],

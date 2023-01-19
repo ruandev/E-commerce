@@ -1,5 +1,5 @@
-import { Cart } from "src/carts/entities/cart.entity";
-import { Product } from "src/products/entities/product.entity";
+import { Cart } from "../../carts/entities/cart.entity";
+import { Product } from "../../products/entities/product.entity";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { JoinColumn } from "typeorm/decorator/relations/JoinColumn";
 import { ManyToOne } from "typeorm/decorator/relations/ManyToOne";

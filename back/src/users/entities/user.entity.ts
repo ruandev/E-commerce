@@ -1,5 +1,5 @@
-import { Cart } from "src/carts/entities/cart.entity";
-import { Merchant } from "src/merchants/entities/merchant.entity";
+import { Cart } from "../../carts/entities/cart.entity";
+import { Merchant } from "../../merchants/entities/merchant.entity";
 import {
   Entity,
   Column,

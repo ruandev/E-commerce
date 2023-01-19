@@ -35,7 +35,11 @@ export class MerchantsService {
 
   async findOne(id: string) {
     try {
-      return await this.merchantRepository.findOneBy({ id });
+      const merchant = await this.merchantRepository.findOneBy({
+        user: { id },
+      });
+      if (merchant) return "Bem vindo a sua loja!";
+      else return "Crie sua loja!";
     } catch (error) {
       return error;
     }

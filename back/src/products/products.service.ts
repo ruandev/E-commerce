@@ -11,10 +11,10 @@ export class ProductsService {
     private productRepository: Repository<Product>
   ) {}
 
-  async uploadImage(file: any) {
+  async uploadImage(id: string, file: any) {
     try {
       const image = await uploadFile(
-        `images/${file.originalname}`,
+        `${id}/${file.originalname}`,
         file.buffer,
         file.mimetype
       );

@@ -1,6 +1,6 @@
-import { CartProduct } from "src/cart-products/entities/cart-product.entity";
-import { Category } from "src/categories/entities/category.entity";
-import { Merchant } from "src/merchants/entities/merchant.entity";
+import { CartProduct } from "../../cart-products/entities/cart-product.entity";
+import { Category } from "../../categories/entities/category.entity";
+import { Merchant } from "../../merchants/entities/merchant.entity";
 
 import {
   Column,
