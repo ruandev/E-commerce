@@ -15,13 +15,4 @@ export class PaymentMethodService {
       return error;
     }
   }
-
-  async findOne(id: string) {
-    try {
-      const oneMethod = await this.paymentRepository.findOneBy({ id });
-      return oneMethod;
-    } catch (error) {
-      return error;
-    }
-  }
 }

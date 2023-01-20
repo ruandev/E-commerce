@@ -14,4 +14,5 @@ export const categories: ICategory[] = [
   { description: "Tools" },
   { description: "Electronic" },
   { description: "Fashion" },
+  { description: "Others" },
 ];

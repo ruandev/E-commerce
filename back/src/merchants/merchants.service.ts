@@ -12,7 +12,7 @@ export class MerchantsService {
 
   async create(id: string, createMerchantDto: CreateMerchantDto) {
     const { store_name } = createMerchantDto;
-
+    //OK
     try {
       const storeNameValidation = await this.merchantRepository.findOneBy({
         store_name,
@@ -22,7 +22,7 @@ export class MerchantsService {
 
       const user = {
         store_name,
-        user_id: id,
+        user: { id },
       };
 
       await this.merchantRepository.insert(user);
@@ -34,6 +34,7 @@ export class MerchantsService {
   }
 
   async findOne(id: string) {
+    //OK
     try {
       const merchant = await this.merchantRepository.findOneBy({
         user: { id },

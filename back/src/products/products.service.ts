@@ -11,8 +11,11 @@ export class ProductsService {
     private productRepository: Repository<Product>
   ) {}
 
-  async uploadImage(id: string, file: any) {
+  async uploadImage(file: any, id: string) {
+    //OK
     try {
+      if (!id) return "Id esperado";
+      if (!file) return "Arquivo impossibilitado de ser adicionado";
       const image = await uploadFile(
         `${id}/${file.originalname}`,
         file.buffer,
@@ -24,18 +27,37 @@ export class ProductsService {
     }
   }
 
-  async create(createProductDto: CreateProductDto) {
+  async create(createProductDto: CreateProductDto, id: string) {
+    //OK
+    const { category_id } = createProductDto;
     try {
-      const newProduct = await this.productRepository.insert(createProductDto);
-      return newProduct;
+      delete createProductDto.category_id;
+      const product = {
+        ...createProductDto,
+        merchant: { id },
+        category: { id: category_id },
+      };
+
+      await this.productRepository.insert(product);
+      return product;
     } catch (error) {
       return error;
     }
   }
 
   async findAll() {
+    //ok
     try {
-      const allProducts = await this.productRepository.find();
+      const allProducts = await this.productRepository.find({
+        select: {
+          category: {
+            description: true,
+          },
+        },
+        relations: {
+          category: true,
+        },
+      });
       return allProducts;
     } catch (error) {
       return error;
@@ -43,8 +65,19 @@ export class ProductsService {
   }
 
   async findOne(id: string) {
+    //ok
     try {
-      const oneProduct = await this.productRepository.findOneBy({ id });
+      const oneProduct = await this.productRepository.find({
+        where: { id },
+        select: {
+          category: {
+            description: true,
+          },
+        },
+        relations: {
+          category: true,
+        },
+      });
       return oneProduct;
     } catch (error) {
       return error;

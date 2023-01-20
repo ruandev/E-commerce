@@ -1,5 +1,5 @@
 import { Cart } from "../../carts/entities/cart.entity";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("payment_methods")
 export class PaymentMethod {
@@ -9,6 +9,6 @@ export class PaymentMethod {
   @Column({ type: "text" })
   description: string;
 
-  @ManyToOne(() => Cart, (cart) => cart.payment_method)
+  @OneToOne(() => Cart, (cart) => cart.payment_method)
   cart: Cart;
 }

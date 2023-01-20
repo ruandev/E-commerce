@@ -12,7 +12,7 @@ export const databaseProviders = [
         password: "postgres",
         database: "market_place",
         entities: [__dirname + "/../**/*.entity{.ts,.js}"],
-        synchronize: false,
+        synchronize: true,
       });
 
       return dataSource.initialize();

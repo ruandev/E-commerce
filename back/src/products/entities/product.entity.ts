@@ -28,13 +28,13 @@ export class Product {
   @Column({ type: "int" })
   stock: number;
 
-  @ManyToOne(() => Category, (category) => category.id)
-  @JoinColumn({ name: "category_id" })
-  category: Category;
-
   @ManyToOne(() => Merchant, (merchant) => merchant.id)
   @JoinColumn({ name: "merchant_id" })
   merchant: Merchant;
+
+  @ManyToOne(() => Category, (category) => category.id)
+  @JoinColumn({ name: "category_id" })
+  category: Category;
 
   @OneToMany(() => CartProduct, (cart_product) => cart_product.product)
   cart_product: CartProduct[];

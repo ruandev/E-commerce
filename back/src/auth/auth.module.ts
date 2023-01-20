@@ -11,6 +11,8 @@ import { UsersModule } from "../users/users.module";
 import { AuthService } from "./auth.service";
 import { JwtStrategy } from "./jwt.strategy";
 import { LocalStrategy } from "./local.strategy";
+import { CartProductsModule } from "src/cart-products/cart-products.module";
+import { CartsModule } from "src/carts/carts.module";
 
 @Module({
   imports: [
@@ -19,6 +21,8 @@ import { LocalStrategy } from "./local.strategy";
     forwardRef(() => ProductsModule),
     forwardRef(() => CategoriesModule),
     forwardRef(() => PaymentMethodModule),
+    forwardRef(() => CartProductsModule),
+    forwardRef(() => CartsModule),
     PassportModule,
     JwtModule.register({
       secret: "batatinha",

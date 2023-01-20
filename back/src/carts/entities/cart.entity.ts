@@ -7,6 +7,7 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
 
@@ -22,9 +23,9 @@ export class Cart {
   @JoinColumn({ name: "user_id" })
   user: User;
 
-  @OneToMany(() => PaymentMethod, (payment_method) => payment_method.id)
+  @OneToOne(() => PaymentMethod, (payment_method) => payment_method.id)
   @JoinColumn({ name: "payment_method" })
-  payment_method: PaymentMethod[];
+  payment_method: PaymentMethod;
 
   @OneToMany(() => CartProduct, (cart_product) => cart_product.cart)
   cart_product: CartProduct[];

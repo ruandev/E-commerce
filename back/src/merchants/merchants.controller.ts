@@ -13,11 +13,11 @@ import { CreateMerchantDto } from "./dto/create-merchant.dto";
 import { UpdateMerchantDto } from "./dto/update-merchant.dto";
 import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
 
-@Controller("merchants")
+@Controller("merchant")
 export class MerchantsController {
   constructor(private readonly merchantsService: MerchantsService) {}
 
-  @Post("cadaster")
+  @Post("cadaster/:id")
   @UseGuards(JwtAuthGuard)
   create(
     @Param("id") id: string,

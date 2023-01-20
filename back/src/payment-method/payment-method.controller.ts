@@ -9,9 +9,4 @@ export class PaymentMethodController {
   findAll() {
     return this.paymentMethodService.findAll();
   }
-
-  @Get(":id")
-  findOne(@Param("id") id: string) {
-    return this.paymentMethodService.findOne(id);
-  }
 }

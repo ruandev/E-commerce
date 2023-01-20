@@ -1,8 +1,6 @@
 import "reflect-metadata";
-
 import { Logger } from "@nestjs/common/services";
 import { NestFactory } from "@nestjs/core";
-
 import { Seeder } from "./database/seeders/seeder";
 import { SeederModule } from "./database/seeders/seeder.module";
 

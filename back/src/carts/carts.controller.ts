@@ -11,13 +11,13 @@ import { CartsService } from "./carts.service";
 import { CreateCartDto } from "./dto/create-cart.dto";
 import { UpdateCartDto } from "./dto/update-cart.dto";
 
-@Controller("carts")
+@Controller("cart")
 export class CartsController {
   constructor(private readonly cartsService: CartsService) {}
 
-  @Post()
-  create(@Body() createCartDto: CreateCartDto) {
-    return this.cartsService.create(createCartDto);
+  @Post("create/:id")
+  create(@Body() createCartDto: CreateCartDto, @Param("id") id: string) {
+    return this.cartsService.create(createCartDto, id);
   }
 
   @Get()

@@ -9,17 +9,14 @@ export class CreateProductDto {
   product_description: string;
 
   @IsNumber()
-  unit_price: number;
+  unt_price: number;
 
   @IsNumber()
   stock: number;
 
   @IsString()
-  url: string;
-
-  @IsNumber()
-  category_id: number;
+  url_image: string;
 
   @IsString()
-  merchant_id: string;
+  category_id: string;
 }

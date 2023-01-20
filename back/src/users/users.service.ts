@@ -13,6 +13,7 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
+    //OK
     const { email, password } = createUserDto;
 
     const validationEmail = await this.userRepository.findOneBy({
@@ -28,6 +29,7 @@ export class UsersService {
   }
 
   async findUserByEmail(email: string): Promise<User | null> {
+    //OK
     return this.userRepository.findOneBy({ email });
   }
 

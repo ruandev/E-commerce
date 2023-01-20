@@ -15,9 +15,12 @@ import { UpdateCartProductDto } from "./dto/update-cart-product.dto";
 export class CartProductsController {
   constructor(private readonly cartProductsService: CartProductsService) {}
 
-  @Post()
-  create(@Body() createCartProductDto: CreateCartProductDto) {
-    return this.cartProductsService.create(createCartProductDto);
+  @Post("add/:id")
+  create(
+    @Body() createCartProductDto: CreateCartProductDto,
+    @Param("id") id: string
+  ) {
+    return this.cartProductsService.create(createCartProductDto, id);
   }
 
   @Get()
