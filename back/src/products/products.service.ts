@@ -14,8 +14,9 @@ export class ProductsService {
   async uploadImage(file: any, id: string) {
     //OK
     try {
-      if (!id) return "Id esperado";
-      if (!file) return "Arquivo impossibilitado de ser adicionado";
+      if (!id) return { message: "Id esperado" };
+      if (!file)
+        return { message: "Arquivo impossibilitado de ser adicionado" };
       const image = await uploadFile(
         `${id}/${file.originalname}`,
         file.buffer,

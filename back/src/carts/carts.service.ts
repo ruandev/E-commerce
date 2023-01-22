@@ -1,6 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
-import { CreateCartDto } from "./dto/create-cart.dto";
 import { UpdateCartDto } from "./dto/update-cart.dto";
 import { Cart } from "./entities/cart.entity";
 
@@ -10,22 +9,48 @@ export class CartsService {
     @Inject("CART_REPOSITORY")
     private cartRepository: Repository<Cart>
   ) {}
-  async create(createCartDto: CreateCartDto, id: string) {
-    const newCart = {
-      status: createCartDto.status,
-      user: { id },
-      payment_method: { id: createCartDto.payment_method },
-    };
+  public async create(id: string) {
+    const user = await this.cartRepository.find({
+      where: {
+        user: { id },
+      },
+      relations: {
+        user: true,
+      },
+    });
+    const cartActive = user.find((element) => {
+      return !element.status;
+    });
 
-    return await this.cartRepository.insert(newCart);
+    if (!cartActive || cartActive.status) {
+      const newCart = {
+        user: { id },
+      };
+
+      return await this.cartRepository.insert(newCart);
+    }
   }
 
   findAll() {
     return `This action returns all carts`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} cart`;
+  async findOne(id: string) {
+    const user = await this.cartRepository.findOne({
+      select: {
+        user: {
+          id: true,
+        },
+      },
+      where: {
+        user: { id },
+        status: false,
+      },
+      relations: {
+        user: true,
+      },
+    });
+    return user.id;
   }
 
   update(id: number, updateCartDto: UpdateCartDto) {

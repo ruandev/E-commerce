@@ -14,21 +14,25 @@ export class MerchantsService {
     const { store_name } = createMerchantDto;
     //OK
     try {
+      const user = await this.merchantRepository.findOneBy({ id });
+      if (user) return { message: "Usuário já tem uma loja ativa!" };
+
       const storeNameValidation = await this.merchantRepository.findOneBy({
         store_name,
       });
       if (storeNameValidation)
-        return "Esse nome já está sendo utilizado por outra loja";
+        return { message: "Esse nome já está sendo utilizado por outra loja!" };
 
-      const user = {
+      const newUser = {
         store_name,
         user: { id },
       };
 
-      await this.merchantRepository.insert(user);
+      const merchant = await this.merchantRepository.insert(newUser);
 
-      return user;
+      return merchant;
     } catch (error) {
+      console.log(error);
       return error;
     }
   }
@@ -39,8 +43,8 @@ export class MerchantsService {
       const merchant = await this.merchantRepository.findOneBy({
         user: { id },
       });
-      if (merchant) return "Bem vindo a sua loja!";
-      else return "Crie sua loja!";
+      if (merchant) return { message: "Bem vindo a sua loja!" };
+      else return { message: "Crie sua loja!" };
     } catch (error) {
       return error;
     }
@@ -57,7 +61,7 @@ export class MerchantsService {
           store_name,
         });
         if (findStoreName && findStoreName.store_name !== merchant.store_name)
-          return "Nome de loja já utilizado";
+          return { message: "Nome de loja já utilizado" };
       }
     } catch (error) {
       return error;

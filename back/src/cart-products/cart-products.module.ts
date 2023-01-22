@@ -4,9 +4,10 @@ import { CartProductsController } from "./cart-products.controller";
 import { AuthModule } from "src/auth/auth.module";
 import { DatabaseModule } from "src/database/database.module";
 import { cartProductsProviders } from "./providers/cart-product.providers";
+import { CartsModule } from "src/carts/carts.module";
 
 @Module({
-  imports: [DatabaseModule, forwardRef(() => AuthModule)],
+  imports: [DatabaseModule, forwardRef(() => AuthModule), CartsModule],
   controllers: [CartProductsController],
   providers: [...cartProductsProviders, CartProductsService],
   exports: [CartProductsService],

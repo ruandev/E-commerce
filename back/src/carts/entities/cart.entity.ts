@@ -16,7 +16,7 @@ export class Cart {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column({ type: "boolean" })
+  @Column({ type: "boolean", default: false })
   status: boolean;
 
   @ManyToOne(() => User, (user) => user.id)

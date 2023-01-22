@@ -8,7 +8,6 @@ import {
   Delete,
 } from "@nestjs/common";
 import { CartsService } from "./carts.service";
-import { CreateCartDto } from "./dto/create-cart.dto";
 import { UpdateCartDto } from "./dto/update-cart.dto";
 
 @Controller("cart")
@@ -16,8 +15,8 @@ export class CartsController {
   constructor(private readonly cartsService: CartsService) {}
 
   @Post("create/:id")
-  create(@Body() createCartDto: CreateCartDto, @Param("id") id: string) {
-    return this.cartsService.create(createCartDto, id);
+  create(@Param("id") id: string) {
+    return this.cartsService.create(id);
   }
 
   @Get()
@@ -27,7 +26,7 @@ export class CartsController {
 
   @Get(":id")
   findOne(@Param("id") id: string) {
-    return this.cartsService.findOne(+id);
+    return this.cartsService.findOne(id);
   }
 
   @Patch(":id")
