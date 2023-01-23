@@ -31,12 +31,22 @@ export class CartProductsService {
     }
   }
 
-  findAll() {
-    return `This action returns all cartProducts`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} cartProduct`;
+  async findAll(id: string) {
+    try {
+      //ok
+      const cartID = await this.cartService.findOne(id);
+      const allProducts = await this.cartProductsRepository.find({
+        where: {
+          cart: { id: cartID },
+        },
+        relations: {
+          cart: true,
+        },
+      });
+      return allProducts;
+    } catch (error) {
+      return error;
+    }
   }
 
   update(id: number, updateCartProductDto: UpdateCartProductDto) {

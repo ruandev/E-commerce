@@ -23,17 +23,12 @@ export class CartProductsController {
     return this.cartProductsService.create(createCartProductDto, id);
   }
 
-  @Get()
-  findAll() {
-    return this.cartProductsService.findAll();
+  @Get("allProducts/:id")
+  findAll(@Param("id") id: string) {
+    return this.cartProductsService.findAll(id);
   }
 
-  @Get(":id")
-  findOne(@Param("id") id: string) {
-    return this.cartProductsService.findOne(+id);
-  }
-
-  @Patch(":id")
+  @Patch("update/:id")
   update(
     @Param("id") id: string,
     @Body() updateCartProductDto: UpdateCartProductDto
@@ -41,7 +36,7 @@ export class CartProductsController {
     return this.cartProductsService.update(+id, updateCartProductDto);
   }
 
-  @Delete(":id")
+  @Delete("delete/:id")
   remove(@Param("id") id: string) {
     return this.cartProductsService.remove(+id);
   }

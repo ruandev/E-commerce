@@ -65,6 +65,28 @@ export class ProductsService {
     }
   }
 
+  async findAllForMerchant(id: string) {
+    //ok
+    try {
+      const allProducts = await this.productRepository.find({
+        select: {
+          category: {
+            description: true,
+          },
+        },
+        relations: {
+          category: true,
+        },
+        where: {
+          merchant: { id },
+        },
+      });
+      return allProducts;
+    } catch (error) {
+      return error;
+    }
+  }
+
   async findOne(id: string) {
     //ok
     try {

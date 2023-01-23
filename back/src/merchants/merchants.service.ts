@@ -28,9 +28,9 @@ export class MerchantsService {
         user: { id },
       };
 
-      const merchant = await this.merchantRepository.insert(newUser);
+      const { raw: merchant } = await this.merchantRepository.insert(newUser);
 
-      return merchant;
+      return merchant[0].id;
     } catch (error) {
       console.log(error);
       return error;
