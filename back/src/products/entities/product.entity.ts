@@ -28,6 +28,12 @@ export class Product {
   @Column({ type: "int" })
   stock: number;
 
+  @Column({ type: "text" })
+  url_image: string;
+
+  @Column({ type: "text" })
+  path_image: string;
+
   @ManyToOne(() => Merchant, (merchant) => merchant.id)
   @JoinColumn({ name: "merchant_id" })
   merchant: Merchant;

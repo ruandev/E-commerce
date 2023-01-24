@@ -33,11 +33,11 @@ export class CartProductsController {
     @Param("id") id: string,
     @Body() updateCartProductDto: UpdateCartProductDto
   ) {
-    return this.cartProductsService.update(+id, updateCartProductDto);
+    return this.cartProductsService.update(id, updateCartProductDto);
   }
 
   @Delete("delete/:id")
   remove(@Param("id") id: string) {
-    return this.cartProductsService.remove(+id);
+    return this.cartProductsService.remove(id);
   }
 }

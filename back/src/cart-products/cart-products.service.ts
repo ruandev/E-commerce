@@ -49,11 +49,15 @@ export class CartProductsService {
     }
   }
 
-  update(id: number, updateCartProductDto: UpdateCartProductDto) {
+  update(id: string, updateCartProductDto: UpdateCartProductDto) {
     return `This action updates a #${id} cartProduct`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} cartProduct`;
+  async remove(id: string) {
+    try {
+      await this.cartProductsRepository.delete({ product: { id } });
+    } catch (error) {
+      return error;
+    }
   }
 }
