@@ -12,7 +12,7 @@ import { CartProductsService } from "./cart-products.service";
 import { CreateCartProductDto } from "./dto/create-cart-product.dto";
 import { UpdateCartProductDto } from "./dto/update-cart-product.dto";
 
-@Controller("cart-products")
+@Controller("cart-product")
 export class CartProductsController {
   constructor(private readonly cartProductsService: CartProductsService) {}
   @Post("add/:id")

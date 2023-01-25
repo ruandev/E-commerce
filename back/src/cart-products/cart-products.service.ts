@@ -43,14 +43,34 @@ export class CartProductsService {
           cart: true,
         },
       });
-      return allProducts;
+
+      const amount = allProducts
+        .reduce((acc, val) => {
+          return Number(acc) + Number(val.quantity) * Number(val.unt_price);
+        }, 0)
+        .toFixed(2);
+
+      const quantityItems = allProducts.reduce((acc, val) => {
+        return Number(acc) + Number(val.quantity);
+      }, 0);
+
+      return { allProducts, quantityItems, amount };
     } catch (error) {
       return error;
     }
   }
 
-  update(id: string, updateCartProductDto: UpdateCartProductDto) {
-    return `This action updates a #${id} cartProduct`;
+  // ACREDITO QUE NÃO SERÁ PRECISO UPDATE DE CART_PRODUCT
+
+  async update(id: string, updateCartProductDto: UpdateCartProductDto) {
+    // const cartID = await this.cartService.findOne(id);
+    // const updateCartProduct = await this.cartProductsRepository.update(
+    //   {
+    //     cart: { id: cartID },
+    //     product: { id: updateCartProductDto.product_id },
+    //   },
+    //   { quantity: updateCartProductDto.quantity }
+    // );
   }
 
   async remove(id: string) {
