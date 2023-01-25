@@ -1,4 +1,4 @@
-import { Inject, Injectable } from "@nestjs/common";
+import { forwardRef, Inject, Injectable } from "@nestjs/common";
 import { CreateCartProductDto } from "./dto/create-cart-product.dto";
 import { UpdateCartProductDto } from "./dto/update-cart-product.dto";
 import { CartProduct } from "./entities/cart-product.entity";
@@ -9,7 +9,7 @@ import { ProductsService } from "src/products/products.service";
 @Injectable()
 export class CartProductsService {
   constructor(
-    @Inject(CartsService)
+    @Inject(forwardRef(() => CartsService))
     private readonly cartService: CartsService,
     @Inject(ProductsService)
     private readonly productService: ProductsService,
