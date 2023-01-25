@@ -4,11 +4,15 @@ import { UpdateCartProductDto } from "./dto/update-cart-product.dto";
 import { CartProduct } from "./entities/cart-product.entity";
 import { Repository } from "typeorm";
 import { CartsService } from "src/carts/carts.service";
+import { ProductsService } from "src/products/products.service";
+
 @Injectable()
 export class CartProductsService {
   constructor(
     @Inject(CartsService)
     private readonly cartService: CartsService,
+    @Inject(ProductsService)
+    private readonly productService: ProductsService,
     @Inject("CARTPRODUCT_REPOSITORY")
     private cartProductsRepository: Repository<CartProduct>
   ) {}
@@ -60,17 +64,41 @@ export class CartProductsService {
     }
   }
 
-  // ACREDITO QUE NÃO SERÁ PRECISO UPDATE DE CART_PRODUCT
+  async finalizingCart(id: string) {
+    const cartID = await this.cartService.findOne(id);
+
+    const allProducts = await this.cartProductsRepository.find({
+      where: {
+        cart: { id: cartID },
+      },
+      relations: {
+        cart: true,
+        product: true,
+      },
+    });
+
+    const updateStocks = allProducts.forEach(async (element) => {
+      await this.productService.updateStock(
+        element.product.id,
+        element.quantity
+      );
+    });
+  }
 
   async update(id: string, updateCartProductDto: UpdateCartProductDto) {
-    // const cartID = await this.cartService.findOne(id);
-    // const updateCartProduct = await this.cartProductsRepository.update(
-    //   {
-    //     cart: { id: cartID },
-    //     product: { id: updateCartProductDto.product_id },
-    //   },
-    //   { quantity: updateCartProductDto.quantity }
-    // );
+    try {
+      const cartID = await this.cartService.findOne(id);
+      await this.cartProductsRepository.update(
+        {
+          cart: { id: cartID },
+          product: { id: updateCartProductDto.product_id },
+        },
+        { quantity: updateCartProductDto.quantity }
+      );
+      return { message: "Quantidade atualizada com sucesso!" };
+    } catch (error) {
+      return error;
+    }
   }
 
   async remove(id: string) {

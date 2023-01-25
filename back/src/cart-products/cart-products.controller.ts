@@ -28,6 +28,11 @@ export class CartProductsController {
     return this.cartProductsService.findAll(id);
   }
 
+  @Get("finalizingCart/:id")
+  finalizingCart(@Param("id") id: string) {
+    return this.cartProductsService.finalizingCart(id);
+  }
+
   @Patch("update/:id")
   update(
     @Param("id") id: string,

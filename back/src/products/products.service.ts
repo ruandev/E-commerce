@@ -130,6 +130,18 @@ export class ProductsService {
     }
   }
 
+  async updateStock(id: string, stock: number) {
+    //OK
+    try {
+      const product = await this.productRepository.findOneBy({ id });
+      const currentStock = product.stock - stock;
+      if (currentStock <= 0) return { message: `${product.title} esgotado!` };
+      await this.productRepository.update(id, { stock: currentStock });
+    } catch (error) {
+      return error;
+    }
+  }
+
   async remove(id: string) {
     //Ok
     try {

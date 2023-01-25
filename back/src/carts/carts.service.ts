@@ -1,4 +1,5 @@
 import { Inject, Injectable } from "@nestjs/common";
+import { CartProductsService } from "src/cart-products/cart-products.service";
 import { Repository } from "typeorm";
 import { UpdateCartDto } from "./dto/update-cart.dto";
 import { Cart } from "./entities/cart.entity";
@@ -6,6 +7,8 @@ import { Cart } from "./entities/cart.entity";
 @Injectable()
 export class CartsService {
   constructor(
+    @Inject(CartProductsService)
+    private readonly cartProductService: CartProductsService,
     @Inject("CART_REPOSITORY")
     private cartRepository: Repository<Cart>
   ) {}
@@ -53,11 +56,8 @@ export class CartsService {
     return user.id;
   }
 
-  update(id: number, updateCartDto: UpdateCartDto) {
-    return `This action updates a #${id} cart`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} cart`;
+  async update(id: string, updateCartDto: UpdateCartDto) {
+    await this.cartRepository.update(id, updateCartDto);
+    await this.cartProductService.finalizingCart(id);
   }
 }
