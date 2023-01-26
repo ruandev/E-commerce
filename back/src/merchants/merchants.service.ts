@@ -3,6 +3,7 @@ import { CreateMerchantDto } from "./dto/create-merchant.dto";
 import { UpdateMerchantDto } from "./dto/update-merchant.dto";
 import { Merchant } from "./entities/merchant.entity";
 import { Repository } from "typeorm";
+import { deleteFile } from "src/aws/storage";
 @Injectable()
 export class MerchantsService {
   constructor(
@@ -75,6 +76,13 @@ export class MerchantsService {
       const deleteMerchant = await this.merchantRepository.remove(merchant);
 
       return deleteMerchant;
+    } catch (error) {
+      return error;
+    }
+  }
+  async deleteMerchant(id: string) {
+    try {
+      await deleteFile("aae8d00e-21b4-4417-9f2c-e08bb621fac7");
     } catch (error) {
       return error;
     }

@@ -39,25 +39,54 @@ export class CartsService {
   }
 
   async findOne(id: string) {
-    const user = await this.cartRepository.findOne({
-      select: {
-        user: {
-          id: true,
+    try {
+      const cart = await this.cartRepository.findOne({
+        select: {
+          user: {
+            id: true,
+          },
         },
-      },
-      where: {
-        user: { id },
-        status: false,
-      },
-      relations: {
-        user: true,
-      },
-    });
-    return user.id;
+        where: {
+          user: { id },
+          status: false,
+        },
+        relations: {
+          user: true,
+          payment_method: true,
+        },
+      });
+
+      return cart.id;
+    } catch (error) {
+      return error;
+    }
   }
 
   async update(id: string, updateCartDto: UpdateCartDto) {
-    await this.cartRepository.update(id, updateCartDto);
-    await this.cartProductService.finalizingCart(id);
+    try {
+      const cart = await this.cartRepository.findOne({
+        select: {
+          user: {
+            id: true,
+          },
+        },
+        where: {
+          user: { id },
+          status: false,
+        },
+        relations: {
+          user: true,
+          payment_method: true,
+        },
+      });
+      const update = {
+        status: updateCartDto.status,
+        payment_method: { id: updateCartDto.payment_method },
+      };
+      await this.cartRepository.update({ id: cart.id }, update);
+      await this.cartProductService.finalizingCart(id);
+    } catch (error) {
+      return error;
+    }
   }
 }

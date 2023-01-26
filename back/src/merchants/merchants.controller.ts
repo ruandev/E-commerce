@@ -46,4 +46,10 @@ export class MerchantsController {
   remove(@Param("id") id: string) {
     return this.merchantsService.remove(id);
   }
+
+  @Delete("delete-merchant/:id")
+  @UseGuards(JwtAuthGuard)
+  deleteMerchant(@Param("id") id: string) {
+    return this.merchantsService.deleteMerchant(id);
+  }
 }

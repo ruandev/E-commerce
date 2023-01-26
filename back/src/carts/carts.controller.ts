@@ -29,7 +29,7 @@ export class CartsController {
     return this.cartsService.findOne(id);
   }
 
-  @Patch(":id")
+  @Patch("purchase/:id")
   update(@Param("id") id: string, @Body() updateCartDto: UpdateCartDto) {
     return this.cartsService.update(id, updateCartDto);
   }
