@@ -29,22 +29,27 @@ export const uploadFile = async (
   };
 };
 
-// export const listFiles = async () => {
-//   const file = await s3
-//     .listObjects({
-//       Bucket: process.env.BACKBLAZE_BUCKET,
-//     })
-//     .promise();
+const listFiles = async (path: string) => {
+  const { Contents } = await s3
+    .listObjects({
+      Bucket: "MarketPlacePortfolio",
+    })
+    .promise();
 
-//   const files = .Contents.map((file) => {
-//     return {
-//       url: `https://${process.env.BACKBLAZE_BUCKET}.${process.env.BUCKET_ENDPOINT_S3}/${file.Key}`,
-//       path: file.Key,
-//     };
-//   });
-
-//   return files;
-// };
+  const files = Contents.map((file) => {
+    return {
+      url: `https://MarketPlacePortfolio.s3.us-west-004.backblazeb2.com/${file.Key}`,
+      path: file.Key,
+    };
+  });
+  const filterFiles = files.filter((element) => {
+    const b = element.path.split("/");
+    if (b[0] === path) {
+      return element;
+    }
+  });
+  return filterFiles;
+};
 
 export const deleteFile = async (path: string) => {
   await s3
