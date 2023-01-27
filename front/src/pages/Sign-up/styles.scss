@@ -7,6 +7,62 @@
     
     section{
         padding: 32px;
-        
+        .div1{
+            h1{
+                font-family: 'Montserrat';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 22px;
+                line-height: 27px;
+                color: #252531;
+            }
+        }
+        strong{
+            font-family: 'Public Sans';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 24px;
+            letter-spacing: -0.382174px;
+            color: #383842;
+            margin-bottom: 24px;
+        }
+        .privacy-policy-text{
+            font-family: 'Public Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 16px;
+            text-align: center;
+            letter-spacing: -0.382174px;
+            color: #191919;
+            width: 302px;
+            margin-bottom: 24px;
+        }
+
+        .btn-create-account{
+            padding: 20px 16px;
+            background: #B7005C;
+            border-radius: 30px;  
+            font-family: 'Public Sans';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 20px;
+            letter-spacing: -0.38px;
+            color: #F3F3F3;
+            height: 56px;
+            margin-bottom: 32px;
+        }
+        .sign-in{
+            font-family: 'Public Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 19px;
+            letter-spacing: -0.382174px;
+            color: #191919;
+        }
     }
+
 }

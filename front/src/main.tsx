@@ -1,12 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom';
 import './styles/index.css'
-import SignIn from './pages/Sign-in'
 import { ChakraProvider } from '@chakra-ui/react'
+import MainRoutes from './router'
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <ChakraProvider>
   <React.StrictMode>
-    <SignIn />
-    </React.StrictMode>
+    <ChakraProvider>
+      <BrowserRouter>
+        <MainRoutes />
+      </BrowserRouter>
     </ChakraProvider>
+  </React.StrictMode>
 )
