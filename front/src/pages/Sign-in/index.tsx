@@ -1,33 +1,32 @@
-import "./styles.scss"
+import styles from "./styles.module.scss"
 import Logo from "../../assets/logo.svg"
 import { Button, FormControl, FormHelperText, FormLabel, Input, Stack } from '@chakra-ui/react'
 interface Props {}
 export default function SignIn() {
   return (
-    <main className='main'>
+    <main className={styles.main}>
       <section>
-        <div className='div1'>
+        <div className={styles.icon}>
           <img src={Logo} alt="logo" />
           <h1>Market Cubos</h1>
         </div>
-        <div className='div2'>
+        <div className={styles.welcome}>
           <h1>Boas-vindas!</h1>
           <p>Use seu e-mail e senha para acessar a conta</p>
         </div>
-        
         <form>
             <FormControl >
-             <FormLabel className='label'>E-mail</FormLabel>
-              <Input className='input' type='email' placeholder="exemplo@email.com" />
+             <FormLabel >E-mail</FormLabel>
+              <Input type='email' placeholder="exemplo@email.com" />
           </FormControl>
           
           <FormControl >
-             <FormLabel className='label'>Senha</FormLabel>
-              <Input style={{marginBottom: "48px"}} className='input' type='password' placeholder="Insira sua senha" />
+             <FormLabel >Senha</FormLabel>
+              <Input style={{marginBottom: "48px"}} type='password' placeholder="Insira sua senha" />
           </FormControl>
           
           <Stack spacing={4} direction='row' align='center'>
-          <Button className='button' size='lg'>
+          <Button size='lg'>
               Fazer login
               </Button>
               </Stack>
