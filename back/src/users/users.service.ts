@@ -1,5 +1,7 @@
 import { Inject, Injectable } from "@nestjs/common";
+import { forwardRef } from "@nestjs/common/utils";
 import * as bcrypt from "bcrypt";
+import { MerchantsService } from "src/merchants/merchants.service";
 import { Repository } from "typeorm";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
@@ -8,6 +10,8 @@ import { User } from "./entities/user.entity";
 @Injectable()
 export class UsersService {
   constructor(
+    @Inject(forwardRef(() => MerchantsService))
+    private readonly merchantService: MerchantsService,
     @Inject("USER_REPOSITORY")
     private userRepository: Repository<User>
   ) {}
@@ -59,11 +63,9 @@ export class UsersService {
 
   async remove(id: string) {
     try {
-      const user = await this.userRepository.findOneBy({ id });
-
-      const deleteUser = await this.userRepository.remove(user);
-
-      return deleteUser;
+      await this.userRepository.delete({ id });
+      await this.merchantService.remove(id);
+      return "Usuário excluído com sucesso!";
     } catch (error) {
       return error;
     }

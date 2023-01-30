@@ -16,6 +16,8 @@ import { CreateProductDto } from "./dto/create-product.dto";
 import { UpdateProductDto } from "./dto/update-product.dto";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
+import { Query, Req } from "@nestjs/common/decorators";
+import { Request } from "express";
 
 @Controller("product")
 export class ProductsController {
@@ -37,8 +39,8 @@ export class ProductsController {
 
   @Get("findAll")
   @UseGuards(JwtAuthGuard)
-  findAll() {
-    return this.productsService.findAll();
+  findAll(@Req() req: Request) {
+    return this.productsService.findAll(req);
   }
 
   @Get("findAllForMerchant/:id")

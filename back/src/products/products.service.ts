@@ -4,6 +4,8 @@ import { UpdateProductDto } from "./dto/update-product.dto";
 import { Product } from "./entities/product.entity";
 import { Repository } from "typeorm";
 import { uploadFile, deleteFile } from "../aws/storage";
+import { Request } from "express";
+import { ILike } from "typeorm";
 @Injectable()
 export class ProductsService {
   constructor(
@@ -46,20 +48,38 @@ export class ProductsService {
     }
   }
 
-  async findAll() {
+  async findAll(req: Request) {
     //ok
+    const { title } = req.query;
     try {
-      const allProducts = await this.productRepository.find({
-        select: {
-          category: {
-            description: true,
+      if (title) {
+        const allProducts = await this.productRepository.find({
+          select: {
+            category: {
+              description: true,
+            },
           },
-        },
-        relations: {
-          category: true,
-        },
-      });
-      return allProducts;
+          relations: {
+            category: true,
+          },
+          where: {
+            title: ILike(`%${title}_%`),
+          },
+        });
+        return allProducts;
+      } else {
+        const allProducts = await this.productRepository.find({
+          select: {
+            category: {
+              description: true,
+            },
+          },
+          relations: {
+            category: true,
+          },
+        });
+        return allProducts;
+      }
     } catch (error) {
       return error;
     }

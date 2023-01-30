@@ -80,7 +80,6 @@ export class MerchantsService {
       await this.merchantRepository.remove(merchant);
       await this.productService.deleteAllProducts(merchant.id);
       await deleteFolder(`${id}/`);
-
       return "Usuário deletado com sucesso!";
     } catch (error) {
       return error;
