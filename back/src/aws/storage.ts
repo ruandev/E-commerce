@@ -1,5 +1,5 @@
 import * as aws from "aws-sdk";
-
+import { s3DeleteDir } from "@zvs001/s3-utils";
 const endpoint = new aws.Endpoint("s3.us-west-004.backblazeb2.com");
 const s3 = new aws.S3({
   endpoint,
@@ -58,4 +58,11 @@ export const deleteFile = async (path: string) => {
       Key: path,
     })
     .promise();
+};
+
+export const deleteFolder = async (path: string) => {
+  await s3DeleteDir(s3, {
+    Bucket: "MarketPlacePortfolio",
+    Prefix: `${path}`,
+  });
 };

@@ -156,4 +156,12 @@ export class ProductsService {
       return error;
     }
   }
+
+  async deleteAllProducts(id: string) {
+    try {
+      await this.productRepository.delete({ merchant: { id } });
+    } catch (error) {
+      return error;
+    }
+  }
 }

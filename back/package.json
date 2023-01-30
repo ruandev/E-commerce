@@ -29,6 +29,7 @@
     "@nestjs/passport": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/typeorm": "^9.0.1",
+    "@zvs001/s3-utils": "^0.1.0",
     "aws-sdk": "^2.1297.0",
     "bcrypt": "^5.1.0",
     "class-transformer": "^0.5.1",

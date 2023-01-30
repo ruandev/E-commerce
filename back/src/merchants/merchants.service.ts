@@ -1,5 +1,7 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { deleteFile } from "src/aws/storage";
+import { forwardRef } from "@nestjs/common/utils";
+import { deleteFolder } from "src/aws/storage";
+import { ProductsService } from "src/products/products.service";
 import { Repository } from "typeorm";
 import { CreateMerchantDto } from "./dto/create-merchant.dto";
 import { UpdateMerchantDto } from "./dto/update-merchant.dto";
@@ -7,6 +9,8 @@ import { Merchant } from "./entities/merchant.entity";
 @Injectable()
 export class MerchantsService {
   constructor(
+    @Inject(forwardRef(() => ProductsService))
+    private readonly productService: ProductsService,
     @Inject("MERCHANT_REPOSITORY")
     private merchantRepository: Repository<Merchant>
   ) {}
@@ -73,17 +77,11 @@ export class MerchantsService {
     try {
       const merchant = await this.merchantRepository.findOneBy({ id });
 
-      const deleteMerchant = await this.merchantRepository.remove(merchant);
+      await this.merchantRepository.remove(merchant);
+      await this.productService.deleteAllProducts(merchant.id);
+      await deleteFolder(`${id}/`);
 
-      return deleteMerchant;
-    } catch (error) {
-      return error;
-    }
-  }
-  async deleteMerchant(id: string) {
-    try {
-      await deleteFile("pastel");
-      // await deleteFile("aae8d00e-21b4-4417-9f2c-e08bb621fac7");
+      return "Usuário deletado com sucesso!";
     } catch (error) {
       return error;
     }
