@@ -63,6 +63,6 @@ export const deleteFile = async (path: string) => {
 export const deleteFolder = async (path: string) => {
   await s3DeleteDir(s3, {
     Bucket: "MarketPlacePortfolio",
-    Prefix: `${path}`,
+    Prefix: `${path}/`,
   });
 };

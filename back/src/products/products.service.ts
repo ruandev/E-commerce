@@ -3,7 +3,7 @@ import { CreateProductDto } from "./dto/create-product.dto";
 import { UpdateProductDto } from "./dto/update-product.dto";
 import { Product } from "./entities/product.entity";
 import { Repository } from "typeorm";
-import { uploadFile, deleteFile } from "../aws/storage";
+import { uploadFile, deleteFile, deleteFolder } from "../aws/storage";
 import { Request } from "express";
 import { ILike } from "typeorm";
 @Injectable()
@@ -179,7 +179,7 @@ export class ProductsService {
 
   async deleteAllProducts(id: string) {
     try {
-      console.log("uepa");
+      await deleteFolder(id);
       await this.productRepository.delete({ merchant: { id } });
     } catch (error) {
       return error;
