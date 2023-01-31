@@ -5,10 +5,11 @@ import {
   Param,
   Patch,
   Post,
-  Request,
+  Req,
   UseGuards,
 } from "@nestjs/common";
 import { Get } from "@nestjs/common/decorators/http/request-mapping.decorator";
+import { Request } from "express";
 import { AuthService } from "src/auth/auth.service";
 import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
 import { LocalAuthGuard } from "src/auth/local-auth.guard";
@@ -25,7 +26,7 @@ export class UsersController {
 
   @Get("profile")
   @UseGuards(JwtAuthGuard)
-  getProfile(@Request() req) {
+  getProfile(@Req() req: Request) {
     return req.user;
   }
 
@@ -36,7 +37,7 @@ export class UsersController {
 
   @Post("login")
   @UseGuards(LocalAuthGuard)
-  login(@Request() req) {
+  login(@Req() req: Request) {
     return this.authService.login(req);
   }
 
