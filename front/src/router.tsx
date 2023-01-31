@@ -1,5 +1,5 @@
 import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
-import Header from './components/Header';
+import HeaderHome from './components/HeaderHome';
 import Home from './pages/Home';
 import SignIn from './pages/Sign-in';
 import SignUp from './pages/Sign-up';
@@ -19,12 +19,16 @@ export default function MainRoutes() {
             </Route>
             
 			<Route element={
-				<div>
-					<Header/>
+				
 					<ProtectedRoutes redirectTo='/sign-in' />
-					</div>
+					
 				}>
-                <Route path='/home' element={<Home/>}/>
+					<Route path='/home' element={
+					<div>
+					<HeaderHome/>	
+						<Home />
+					</div>
+					} />
             </Route>
 		</Routes>
 	);
