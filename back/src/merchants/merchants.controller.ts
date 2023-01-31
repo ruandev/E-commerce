@@ -26,13 +26,12 @@ export class MerchantsController {
     return this.merchantsService.create(id, createMerchantDto);
   }
 
-  @Get(":id")
+  @Get("profile/:id")
   @UseGuards(JwtAuthGuard)
-  findOne(@Param("id") id: string) {
-    return this.merchantsService.findOne(id);
+  profile(@Param("id") id: string) {
+    return this.merchantsService.profile(id);
   }
-
-  @Patch(":id")
+  @Patch("update/:id")
   @UseGuards(JwtAuthGuard)
   update(
     @Param("id") id: string,

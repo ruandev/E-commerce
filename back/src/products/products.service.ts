@@ -179,6 +179,7 @@ export class ProductsService {
 
   async deleteAllProducts(id: string) {
     try {
+      console.log("uepa");
       await this.productRepository.delete({ merchant: { id } });
     } catch (error) {
       return error;

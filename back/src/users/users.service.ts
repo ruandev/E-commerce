@@ -24,7 +24,7 @@ export class UsersService {
       email,
     });
 
-    if (validationEmail) return `E-mail já cadastrado`;
+    if (validationEmail) return { message: "E-mail já cadastrado" };
 
     createUserDto.password = await bcrypt.hash(password, 10);
 
@@ -46,16 +46,16 @@ export class UsersService {
       if (email) {
         const validationEmail = await this.userRepository.findOneBy({ email });
         if (validationEmail && validationEmail.email !== user.email)
-          return "E-mail já cadastrado!";
+          return { message: "E-mail já cadastrado!" };
       }
 
       if (password) {
         updateUserDto.password = await bcrypt.hash(password, 10);
       }
 
-      const updateUser = await this.userRepository.update(id, updateUserDto);
+      await this.userRepository.update(id, updateUserDto);
 
-      return updateUser;
+      return { message: "Atualização realizada com sucesso!" };
     } catch (error) {
       return error;
     }
@@ -63,9 +63,9 @@ export class UsersService {
 
   async remove(id: string) {
     try {
-      await this.userRepository.delete({ id });
       await this.merchantService.remove(id);
-      return "Usuário excluído com sucesso!";
+      await this.userRepository.delete({ id });
+      return { message: "Usuário excluído com sucesso!" };
     } catch (error) {
       return error;
     }

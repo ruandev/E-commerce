@@ -13,6 +13,12 @@ export class User {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
+  @Column({ type: "text" })
+  frist_name: string;
+
+  @Column({ type: "text" })
+  last_name: string;
+
   @Column({ unique: true })
   email: string;
 

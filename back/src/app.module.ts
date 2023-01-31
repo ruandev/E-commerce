@@ -10,8 +10,9 @@ import { MerchantsModule } from "./merchants/merchants.module";
 import validateSchema from "./middleware/yupValidation";
 import { PaymentMethodModule } from "./payment-method/payment-method.module";
 import { ProductsModule } from "./products/products.module";
-import cadasterSchema from "./schemas/cadasterUser.schema";
+import { cadasterSchema } from "./schemas/cadasterUser.schema";
 import { loginSchema } from "./schemas/loginUser.schema";
+import { updateUserSchema } from "./schemas/updateUser.schema";
 import { UsersModule } from "./users/users.module";
 @Module({
   imports: [
@@ -31,6 +32,9 @@ import { UsersModule } from "./users/users.module";
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(validateSchema(cadasterSchema)).forRoutes("user/cadaster"),
-      consumer.apply(validateSchema(loginSchema)).forRoutes("user/login");
+      consumer.apply(validateSchema(loginSchema)).forRoutes("user/login"),
+      consumer
+        .apply(validateSchema(updateUserSchema))
+        .forRoutes("user/update/:id");
   }
 }

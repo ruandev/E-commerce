@@ -19,9 +19,6 @@ export class MerchantsService {
     const { store_name } = createMerchantDto;
     //OK
     try {
-      const user = await this.merchantRepository.findOneBy({ id });
-      if (user) return { message: "Usuário já tem uma loja ativa!" };
-
       const storeNameValidation = await this.merchantRepository.findOneBy({
         store_name,
       });
@@ -35,39 +32,49 @@ export class MerchantsService {
 
       const { raw: merchant } = await this.merchantRepository.insert(newUser);
 
-      return merchant[0].id;
+      return {
+        message: "Loja criada com sucesso!",
+        merchant_id: merchant[0].id,
+      };
     } catch (error) {
-      console.log(error);
+      if (error.code === "23505") {
+        return { message: "O usuário já tem uma loja ativa!" };
+      }
       return error;
     }
   }
 
-  async findOne(id: string) {
-    //OK
-    try {
-      const merchant = await this.merchantRepository.findOneBy({
-        user: { id },
-      });
-      if (merchant) return { message: "Bem vindo a sua loja!" };
-      else return { message: "Crie sua loja!" };
-    } catch (error) {
-      return error;
-    }
+  async profile(id: string) {
+    const merchant = await this.merchantRepository.findOneBy({ user: { id } });
+    return { mechant_id: merchant.id };
   }
 
   async update(id: string, updateMerchantDto: UpdateMerchantDto) {
-    const { store_name } = updateMerchantDto;
-
     try {
-      const merchant = await this.merchantRepository.findOneBy({ id });
+      const merchant = await this.merchantRepository.find({
+        select: {
+          user: {
+            id: true,
+          },
+        },
+        where: {
+          store_name: updateMerchantDto.store_name,
+          user: { id },
+        },
+        relations: {
+          user: true,
+        },
+      });
 
-      if (store_name) {
-        const findStoreName = await this.merchantRepository.findOneBy({
-          store_name,
-        });
-        if (findStoreName && findStoreName.store_name !== merchant.store_name)
-          return { message: "Nome de loja já utilizado" };
+      if (merchant[0] && merchant[0].user.id !== id) {
+        return { message: "Nome de loja já cadastrado!" };
       }
+
+      await this.merchantRepository.update(
+        { user: { id } },
+        { store_name: updateMerchantDto.store_name }
+      );
+      return { message: "Nome da loja foi atualizado com sucesso!" };
     } catch (error) {
       return error;
     }
@@ -75,12 +82,13 @@ export class MerchantsService {
 
   async remove(id: string) {
     try {
-      const merchant = await this.merchantRepository.findOneBy({ id });
-
-      await this.merchantRepository.remove(merchant);
+      const merchant = await this.merchantRepository.findOneBy({
+        user: { id },
+      });
       await this.productService.deleteAllProducts(merchant.id);
+      await this.merchantRepository.delete({ id: merchant.id });
       await deleteFolder(`${id}/`);
-      return "Usuário deletado com sucesso!";
+      return { message: "Loja excluida com sucesso!" };
     } catch (error) {
       return error;
     }

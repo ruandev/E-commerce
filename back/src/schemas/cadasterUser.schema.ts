@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-const cadasterSchema = yup.object().shape({
+export const cadasterSchema = yup.object().shape({
   frist_name: yup.string().required({ message: "Nome é obrigatório!" }),
   last_name: yup.string().required({ message: "Sobrenome é obrigatório!" }),
   email: yup
@@ -18,4 +18,3 @@ const cadasterSchema = yup.object().shape({
       }
     ),
 });
-export default cadasterSchema;
