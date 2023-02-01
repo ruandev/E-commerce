@@ -13,7 +13,9 @@ import { JwtStrategy } from "./jwt.strategy";
 import { LocalStrategy } from "./local.strategy";
 import { CartProductsModule } from "src/cart-products/cart-products.module";
 import { CartsModule } from "src/carts/carts.module";
-
+import { config } from "dotenv";
+config();
+console.log();
 @Module({
   imports: [
     forwardRef(() => UsersModule),
@@ -25,7 +27,7 @@ import { CartsModule } from "src/carts/carts.module";
     forwardRef(() => CartsModule),
     PassportModule,
     JwtModule.register({
-      secret: "batatinha",
+      secret: process.env.JWT_PASS,
       signOptions: { expiresIn: "2h" },
     }),
   ],
