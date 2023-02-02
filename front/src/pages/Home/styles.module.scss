@@ -2,7 +2,9 @@
 .main{
     max-width: 100vw;
     min-height: 87vh;
-    @include mixin.flex(row, flex-start, center);
+    padding: 30px 0px 30px 0px;
+    background: #F4F4F4;
+    @include mixin.flex(row, start, start);
     section{
         max-width: 100%;
     }

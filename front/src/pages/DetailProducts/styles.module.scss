@@ -1,0 +1,15 @@
+@use "../../styles//mixin.module.scss";
+.main{
+    width: 100vw;
+    padding: 32px;
+    background: #F4F4F4;
+    p{
+        width: 100%;
+        @include mixin.font('Public Sans', normal, 400, 1rem, 1.7rem, -0.382174px, #999999);
+        margin-bottom: 32px;
+    }
+    .product{
+        
+    }
+}
+    
