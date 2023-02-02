@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import useProductValue from '../hooks/useProductValue';
+import useProductValue from '../hooks/Product/useProductValue';
 import { IStateProduct } from '../interfaces/Product/IStateProduct.type';
 const ProductContext = createContext<IStateProduct | {}>({});
 
