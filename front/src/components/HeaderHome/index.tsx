@@ -8,32 +8,31 @@ import styles from "./styles.module.scss"
 export default function Header() {
   return (
     <main className={styles.main}>
-      <section>
-        <div>
-          <div >
-          <img src={Logo} alt="logo" style={{marginRight:"15px"}} />
-            <p>Market Place</p>
-            </div>
-          <div className={styles.icons}>
-            <div>
-              <img src={Cart} alt="carrinho" />
-              <p>Meu carrinho</p>
-            </div>
-            <div>
-              <img src={Store} alt="lojinha" />
-              <p>Minha loja</p>
-            </div>
-            <div>
-
-              <img src={User} alt="usuario" />
-              <p>Usuário</p>
-            </div>
-          </div>
-        </div>
-        <div className={styles.search}>
+      <section className={styles.secLogo}>
+        <div className={styles.logo}>
+          <img src={Logo} alt="logo" />
+          <p>Market Place</p>
+      </div>
+      </section>
+      <section className={styles.secInput}>
+        <form className={styles.input}>
           <Input placeholder='Ex: Fone de ouvido' />
-          <img src={Search} alt="pesquisar" />
-
+          <button><img src={Search} alt="pesquisar"/></button>
+        </form>
+        <div className={styles.icons}>
+            <div>
+            <img src={Cart} alt="carrinho" />
+            <p>Meu carrinho</p>
+            </div>
+          <div>  
+            <img src={Store} alt="loja" />
+            <p>Minha loja</p>
+            </div> 
+          <div>
+            <img src={User} alt="usuario" />
+            <p>Usuário</p>
+            </div>
+          
         </div>
       </section>
     </main>
