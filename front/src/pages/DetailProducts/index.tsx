@@ -9,10 +9,12 @@ export default function DetailProduct() {
       <main className={styles.main}>
           <p>Página inicial {'>'} {productDetail?.title} </p>
           <section className={styles.product}>
+              
               <img src={productDetail?.image} alt="" />
+              <div>
               <h1>{productDetail?.title}</h1>
-              <p>Vendido e entregue por | NOME DA LOJA</p>
-              <span>{productDetail?.price}</span>
+              <p className={styles.soldBy}>Vendido e entregue por |    <span style={{color: "v"}}> NOME DA LOJA</span> </p>
+              <span className={styles.price}>{productDetail?.price}</span>
               <div>
                   <p>Formas de pagamento</p>
                   <p>Pix</p>  
@@ -21,6 +23,7 @@ export default function DetailProduct() {
               <div>
                   <p>Quantidade</p>
                   <span>CONTADOR</span> <span>quantidade disponiveis</span>
+              </div>
               </div>
           </section>
           <section>{productDetail?.description}</section>
