@@ -1,8 +1,10 @@
 import styles from "./styles.module.scss"
 import Logo from "../../assets/logo.svg"
 import { Button, FormControl, FormHelperText, FormLabel, Input, Stack } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom'
 interface Props {}
 export default function SignIn() {
+  const navigate = useNavigate()
   return (
     <main className={styles.main}>
       <section>
@@ -26,7 +28,7 @@ export default function SignIn() {
           </FormControl>
           
           <Stack spacing={4} direction='row' align='center'>
-          <Button size='lg'>
+            <Button size='lg' onClick={() => navigate("/pagina-inicial")}>
               Fazer login
               </Button>
               </Stack>
