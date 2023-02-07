@@ -33,7 +33,7 @@ export default function SignIn() {
               </Button>
               </Stack>
         </form>
-        <p>Não possui conta? <span style={{color:  '#B7005C'}}>Cadastrar</span> </p>
+        <p>Não possui conta? <span style={{color:  '#B7005C'}} onClick={() => navigate("/cadastro")}>Cadastra-se</span></p>
       </section>
     </main>
   )

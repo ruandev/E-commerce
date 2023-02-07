@@ -1,10 +1,12 @@
 import styles from "./styles.module.scss"
 import Logo from "../../assets/logo.svg"
 import { Button, FormControl, FormLabel, Input, Stack } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom'
 interface Props {
 
 }
 export default function SignUp() {
+  const navigate = useNavigate()
   return (
     <main className={styles.main}>
       <section>
@@ -38,7 +40,7 @@ export default function SignUp() {
           Criar conta
           </Button>
         </Stack>
-        <p className='sign-in'>Já tem uma conta? <span style={{ color: "#B7005C" }}>Fazer login</span></p>
+        <p className='sign-in'>Já tem uma conta? <span style={{ color: "#B7005C" }} onClick={() => navigate("/entrar")}>Fazer login</span></p>
       </section>
     </main>
   )
