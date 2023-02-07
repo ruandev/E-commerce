@@ -1,9 +1,10 @@
 import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
 import HeaderHome from './components/HeaderHome';
-import DetailProduct from './pages/DetailProducts';
+import DetailProduct from './components/DetailProducts';
 import Home from './pages/Home';
 import SignIn from './pages/Sign-in';
 import SignUp from './pages/Sign-up';
+import Store from './pages/Store';
 export default function MainRoutes() {
 	function ProtectedRoutes({ redirectTo }: any) {
 		const isAuthenticated = true;
@@ -34,6 +35,11 @@ export default function MainRoutes() {
 					<div>
 					<HeaderHome/>	
 						<DetailProduct/>
+					</div>
+					} />
+				<Route path='/minha-loja' element={
+					<div>	
+						<Store/>
 					</div>
 					} />
 			</Route>

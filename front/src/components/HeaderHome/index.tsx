@@ -26,7 +26,7 @@ export default function Header() {
             <img src={Cart} alt="carrinho" />
             <p>Meu carrinho</p>
             </div>
-          <div>  
+          <div onClick={() => navigate("/minha-loja")}>  
             <img src={Store} alt="loja" />
             <p>Minha loja</p>
             </div> 
