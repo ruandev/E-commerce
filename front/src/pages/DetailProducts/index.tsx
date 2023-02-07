@@ -5,13 +5,14 @@ import useProduct from '../../hooks/Product/useProduct'
 import { IStateProduct } from '../../interfaces/Product/IStateProduct.type'
 import styles from "./styles.module.scss"
 import PurpleCart from "../../assets/purple_cart.svg"
+import { useNavigate } from 'react-router-dom'
 export default function DetailProduct() {
-   
+const navigate = useNavigate()
     const { productDetail }: IStateProduct = useProduct()
     const [number, setNumber] = useState(1)
     function handleCount(signal: string) {
         if (number >= 1 && signal === '+') {
-         return setNumber(number + 1)
+            return setNumber(number + 1)
         }
         if (number >= 2 && signal === '-') {
             return setNumber(number - 1)
@@ -19,7 +20,12 @@ export default function DetailProduct() {
     }
     return (
         <main className={styles.main}>
-            <p className={styles.introduction}>Página inicial {'>'} {productDetail?.title} </p>
+            <p className={styles.introduction}>
+                <span style={{cursor: "pointer"}} onClick={() => navigate("/pagina-inicial")}>Página inicial</span>
+                &nbsp; &nbsp; 
+                {'>'}
+                &nbsp; &nbsp;
+                <span className={styles.productTitle}>{productDetail?.title} </span></p>
             <section className={styles.product}>
 
                 <img src={productDetail?.image} alt="produto" />
@@ -36,21 +42,18 @@ export default function DetailProduct() {
                                 <span onClick={() => handleCount('-')}>-</span>
                                 {number}
                                 <span
-                                onClick={() => handleCount('+')}>+</span>
-                                
+                                    onClick={() => handleCount('+')}>+</span>
+
                             </div>
                             <p>20 disponíveis</p>
-                        </div>    
+                        </div>
                     </div>
                     <div className={styles.buttons}>
-                        <Button className={styles.cart}><img src={PurpleCart} alt="carrinho"/>Adicionar ao carrinho</Button>
-                        <Button>Button</Button>
+                        <Button className={styles.cart}><img src={PurpleCart} alt="carrinho" />Adicionar ao carrinho</Button>
                     </div>
                 </div>
             </section>
             <section>{productDetail?.description}</section>
-            <section>Other products</section>
-
         </main>
     )
 }

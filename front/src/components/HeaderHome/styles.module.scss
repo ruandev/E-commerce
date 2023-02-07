@@ -8,6 +8,7 @@
             align-items: flex-end;
             justify-content: center;
             gap: 20px;
+            cursor: pointer;
 
             p{
                 @include mixin.font('Montserrat', normal, 700, 2.3rem, 2.8rem, -0.382174px, #252531);

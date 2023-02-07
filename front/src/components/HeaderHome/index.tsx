@@ -5,11 +5,13 @@ import Search from "../../assets/search.svg"
 import Store from "../../assets/store.svg"
 import User from "../../assets/user.svg"
 import styles from "./styles.module.scss"
+import { useNavigate } from 'react-router-dom'
 export default function Header() {
+  const navigate = useNavigate()
   return (
     <main className={styles.main}>
       <section className={styles.secLogo}>
-        <div className={styles.logo}>
+        <div className={styles.logo} onClick={() => navigate("/pagina-inicial")}>
           <img src={Logo} alt="logo" />
           <p>Market Place</p>
       </div>
