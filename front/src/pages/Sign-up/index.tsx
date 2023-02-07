@@ -40,7 +40,7 @@ export default function SignUp() {
           Criar conta
           </Button>
         </Stack>
-        <p className='sign-in'>Já tem uma conta? <span style={{ color: "#B7005C" }} onClick={() => navigate("/entrar")}>Fazer login</span></p>
+        <p className='sign-in'>Já tem uma conta? <span style={{ color: "#B7005C", textDecoration: "underline", cursor: "pointer" }} onClick={() => navigate("/entrar")}>Fazer login</span></p>
       </section>
     </main>
   )
