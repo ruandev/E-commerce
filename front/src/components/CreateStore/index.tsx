@@ -14,10 +14,10 @@ export default function CreateStore() {
         <form >
           <FormControl style={{position: "relative"}}>
             <FormLabel>Nome da loja</FormLabel>
-            <Input type='text' placeholder='Lojinha da Maria' />
+            <Input type='text' placeholder='Ex: Lojinha da Maria' />
         <span onClick={() => navigate('/pagina-inicial')}>{'<'}&ensp; Voltar</span>
           </FormControl>
-          <Button>Crie sua loja!</Button>
+          <Button>Criar loja</Button>
         </form>
       </section>
     </main>

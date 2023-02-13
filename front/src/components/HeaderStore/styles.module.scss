@@ -1,0 +1,15 @@
+@use "../../styles/mixin.module.scss";
+.main{
+    width: 100vw;
+    padding: 15px 30px;
+    background: #FDFDFD;
+   section{
+    @include mixin.flex(row, space-between, center);
+    .logo{
+        @include mixin.flex(row, center, center);
+    }
+    .store{
+        @include mixin.flex(row, center, center);
+    }
+   }
+}

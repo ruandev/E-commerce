@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import SignIn from './pages/Sign-in';
 import SignUp from './pages/Sign-up';
 import Store from './pages/Store';
+import HeaderStore from './components/HeaderStore';
 export default function MainRoutes() {
 	function ProtectedRoutes({ redirectTo }: any) {
 		const isAuthenticated = true;
@@ -38,7 +39,8 @@ export default function MainRoutes() {
 					</div>
 					} />
 				<Route path='/minha-loja' element={
-					<div>	
+					<div>
+						<HeaderStore/>
 						<Store/>
 					</div>
 					} />
