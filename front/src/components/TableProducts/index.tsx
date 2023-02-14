@@ -2,7 +2,7 @@ import { Button, Table, TableContainer,  Th, Thead, Tr } from '@chakra-ui/react'
 import styles from "./styles.module.scss";
 import MyProducts from "../MyProducts"
 import { useState } from 'react';
-import DeleteProduct from '../ModalDeleteProduct';
+import DeleteProduct from '../Modals/DeleteProduct';
 import { useNavigate } from 'react-router-dom';
 export default function TableProducts() {
   const navigate = useNavigate()

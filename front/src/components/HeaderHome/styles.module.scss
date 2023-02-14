@@ -1,5 +1,6 @@
 @use "../../styles/mixin.module.scss";
 .main{
+    max-width: 100vw;
     background: #FDFDFD;
     padding: 20px 30px;
     .secLogo{

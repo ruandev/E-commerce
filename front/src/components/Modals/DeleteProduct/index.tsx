@@ -1,5 +1,5 @@
 import styles from "./styles.module.scss"
-import X from "../../assets/x.svg"
+import X from "../../../assets/x.svg"
 import { Button } from '@chakra-ui/react'
 interface Props {
     setModalDeleteProduct: any

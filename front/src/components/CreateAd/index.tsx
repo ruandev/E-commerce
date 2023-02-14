@@ -1,4 +1,4 @@
-import { FormControl, FormLabel, Input, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Select, Textarea } from '@chakra-ui/react';
+import { Button, FormControl, FormLabel, Input, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Select, Textarea } from '@chakra-ui/react';
 import styles from "./styles.module.scss";
 import UploadImage from "../../assets/addImage.svg";
 import { useState } from 'react';
@@ -12,38 +12,54 @@ export default function CreateAt() {
     <main className={styles.main}>
       <section>
         <form>
-          <FormControl>
-            <FormLabel>Email address</FormLabel>
-            <Input type='text' />
+        <h1>Adicionar novo produto</h1>
+          <div className={styles.titleAndCategory}>
+          <FormControl className={styles.title}>
+            <FormLabel>Título</FormLabel>
+            <Input type='text' placeholder='Nome do produto' />
           </FormControl>
-          <Select placeholder='Select option'>
+          <FormControl className={styles.select}> 
+          <FormLabel>Categoria</FormLabel>
+              <Select required>
+              <option value="" disabled selected>Selecione...</option>
             <option value='option1'>Option 1</option>
             <option value='option2'>Option 2</option>
             <option value='option3'>Option 3</option>
-          </Select>
-          <Textarea placeholder='Here is a sample placeholder' />
-          <FormControl>
-            <FormControl>
-              <FormLabel>Price</FormLabel>
-              <Input type='text' />
+            </Select>
             </FormControl>
-            <FormLabel>Amount</FormLabel>
-            <NumberInput max={50} min={10}>
-              <NumberInputField />
+          </div>
+          <FormControl>
+          <FormLabel>Descrição do produto</FormLabel>
+            <Textarea placeholder='Ex.: Camiseta branca, Tamanho G' className={styles.textField} />
+            </FormControl>
+          <div className={styles.priceAndStock}>
+            <FormControl>
+              <FormLabel className={styles.price}>Preço</FormLabel>
+              <Input type='text' placeholder='R$' />
+            </FormControl>
+          <FormControl>
+              <FormLabel className={styles.stock}> Estoque</FormLabel>
+            <NumberInput max={1000000} min={1}>
+              <NumberInputField placeholder='Ex: 10'/>
               <NumberInputStepper>
                 <NumberIncrementStepper />
                 <NumberDecrementStepper />
               </NumberInputStepper>
             </NumberInput>
-          </FormControl>
+            </FormControl>
+            </div>
           <FormControl>
-            <FormLabel>Imagem</FormLabel>
+            <FormLabel>Adicionar foto</FormLabel>
             <div className={styles.upload}>
             {uploadImage ? <img src={URL.createObjectURL(uploadImage)} width='100%' height='100%' alt="foto do produto" /> : <img src={ UploadImage} alt="adicione a foto do seu produto" />}
-              <Input type='file' name="" className={styles.file_customizada} onChange={ handleUploadImage} />
+              <Input type='file' name="" className={styles.inputFile} onChange={ handleUploadImage} />
             </div>
           </FormControl>
         </form>
+        <div className={styles.btns}>
+          <Button style={{color: "#fff", background: "#B7005C"}}>Publicar anúncio</Button>
+          <Button>Cancelar</Button>
+          </div>
       </section>
     </main>
   )

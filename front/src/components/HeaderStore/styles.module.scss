@@ -1,6 +1,6 @@
 @use "../../styles/mixin.module.scss";
 .main{
-    width: 100vw;
+    max-width: 100vw;
     padding: 15px 30px;
     background: #FDFDFD;
    section{
