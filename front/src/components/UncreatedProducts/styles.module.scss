@@ -1,0 +1,27 @@
+@use "../../styles/mixin.module.scss";
+.main{
+    height: calc(100vh - 280px);
+   max-height: 100vh;
+    width: 100%;
+    position: relative;
+    tr{
+        position: absolute;
+        top: -40px;
+        left: 0%;
+        @include mixin.flex(column, center, center);
+        h1{
+            @include mixin.font('Public Sans', normal, 500, 3rem, 3.4rem, -0.38px, #979797);
+            margin-bottom: 10px;
+        }
+        p{
+            @include mixin.font('Public Sans', normal, 500, 1.4rem, 1.8rem, -0.38px, #979797);
+        }
+    }
+}
+@media screen and (min-width: 768px) {
+    .main{
+        tr{
+            left: 35%;
+        }
+    }
+}

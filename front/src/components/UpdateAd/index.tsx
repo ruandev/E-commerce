@@ -2,12 +2,8 @@ import { Button, FormControl, FormLabel, Input, NumberDecrementStepper, NumberIn
 import styles from "./styles.module.scss";
 import UploadImage from "../../assets/addImage.svg";
 import { useState } from 'react';
-import Published from "../Modals/Published"
-import DiscardChanges from "../Modals/DiscardChanges"
-
-export default function CreateAt() {
+export default function UpdateAt() {
   const [uploadImage, setUploadImage]: any = useState("")
-  const [modalPublished, setModalPublised] = useState(false)
   function handleUploadImage(e: any) {
    setUploadImage(e.target.files[0])
   }
@@ -15,10 +11,8 @@ export default function CreateAt() {
   return (
     <main className={styles.main}>
       <section>
-        {/* <DiscardChanges/> */}
-        {modalPublished && <Published setModalPublised={setModalPublised} />}
         <form>
-        <h1>Adicionar novo produto</h1>
+        <h1>Editar Produto</h1>
           <div className={styles.titleAndCategory}>
           <FormControl className={styles.title}>
             <FormLabel>Título</FormLabel>
@@ -63,7 +57,7 @@ export default function CreateAt() {
           </FormControl>
         </form>
         <div className={styles.btns}>
-          <Button style={{color: "#fff", background: "#B7005C"}} onClick={() => setModalPublised(true)}>Publicar anúncio</Button>
+          <Button style={{color: "#fff", background: "#B7005C"}}>Publicar anúncio</Button>
           <Button>Cancelar</Button>
           </div>
       </section>

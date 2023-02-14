@@ -4,6 +4,7 @@ import MyProducts from "../MyProducts"
 import { useState } from 'react';
 import DeleteProduct from '../Modals/DeleteProduct';
 import { useNavigate } from 'react-router-dom';
+import UncreatedProducts from '../UncreatedProducts';
 export default function TableProducts() {
   const navigate = useNavigate()
   const [modalDeleteProduct, setModalDeleteProduct] = useState(false)
@@ -18,7 +19,7 @@ export default function TableProducts() {
         <div className={styles.myProducts}>
           <TableContainer className={styles.tableContainer}>
             <Table>
-              <Thead >
+              <Thead style={{position: "relative"}}>
                 <Tr >
                 <Th></Th>
                   <Th >Nome</Th>
@@ -28,7 +29,8 @@ export default function TableProducts() {
                   <Th>Editar/Apagar</Th>
                 </Tr>
               </Thead>
-              <MyProducts setModalDeleteProduct={setModalDeleteProduct} />
+              <UncreatedProducts/>
+              {/* <MyProducts setModalDeleteProduct={setModalDeleteProduct} /> */}
             </Table>
           </TableContainer>
         </div>
