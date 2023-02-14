@@ -6,6 +6,7 @@ import SignIn from './pages/Sign-in';
 import SignUp from './pages/Sign-up';
 import Store from './pages/Store';
 import HeaderStore from './components/HeaderStore';
+import CreateAt from './components/CreateAd';
 export default function MainRoutes() {
 	function ProtectedRoutes({ redirectTo }: any) {
 		const isAuthenticated = true;
@@ -42,6 +43,12 @@ export default function MainRoutes() {
 					<div>
 						<HeaderStore/>
 						<Store/>
+					</div>
+					} />
+				<Route path='/cadastrar-produto' element={
+					<div>
+						<HeaderStore/>
+						<CreateAt/>
 					</div>
 					} />
 			</Route>
