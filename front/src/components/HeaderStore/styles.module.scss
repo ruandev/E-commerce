@@ -7,9 +7,15 @@
     @include mixin.flex(row, space-between, center);
     .logo{
         @include mixin.flex(row, center, center);
+        p{
+            @include mixin.font('Montserrat', normal, 700, 2.3rem, 2.8rem, -0.382174px, #252531);
+            
+        }
     }
+    
     .store{
         @include mixin.flex(row, center, center);
     }
+    
    }
 }

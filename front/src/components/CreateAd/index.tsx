@@ -4,8 +4,9 @@ import UploadImage from "../../assets/addImage.svg";
 import { useState } from 'react';
 import Published from "../Modals/Published"
 import DiscardChanges from "../Modals/DiscardChanges"
-
+import useDiscardChanges from "../../hooks/DiscardChanges/useDiscardChanges"
 export default function CreateAt() {
+  const {modalDiscardChanges, setModalDiscardChanges}: any = useDiscardChanges()
   const [uploadImage, setUploadImage]: any = useState("")
   const [modalPublished, setModalPublised] = useState(false)
   function handleUploadImage(e: any) {
@@ -15,7 +16,7 @@ export default function CreateAt() {
   return (
     <main className={styles.main}>
       <section>
-        {/* <DiscardChanges/> */}
+        {modalDiscardChanges && <DiscardChanges/>}
         {modalPublished && <Published setModalPublised={setModalPublised} />}
         <form>
         <h1>Adicionar novo produto</h1>
@@ -64,7 +65,7 @@ export default function CreateAt() {
         </form>
         <div className={styles.btns}>
           <Button style={{color: "#fff", background: "#B7005C"}} onClick={() => setModalPublised(true)}>Publicar anúncio</Button>
-          <Button>Cancelar</Button>
+          <Button onClick={() => setModalDiscardChanges(true)}>Cancelar</Button>
           </div>
       </section>
     </main>

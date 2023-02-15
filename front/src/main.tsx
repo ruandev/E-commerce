@@ -5,12 +5,15 @@ import './styles/index.css'
 import { ChakraProvider } from '@chakra-ui/react'
 import MainRoutes from './router'
 import { ProductProvider } from './context/ProductContext';
+import { DiscardChangesProvider } from './context/DiscardChanges';
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ChakraProvider>
       <BrowserRouter>
         <ProductProvider>
-        <MainRoutes />
+          <DiscardChangesProvider>
+            <MainRoutes />
+            </DiscardChangesProvider>
       </ProductProvider>
       </BrowserRouter>
     </ChakraProvider>
