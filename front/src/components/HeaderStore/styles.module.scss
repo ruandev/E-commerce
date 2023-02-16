@@ -3,19 +3,33 @@
     max-width: 100vw;
     padding: 15px 30px;
     background: #FDFDFD;
-   section{
-    @include mixin.flex(row, space-between, center);
-    .logo{
-        @include mixin.flex(row, center, center);
-        p{
-            @include mixin.font('Montserrat', normal, 700, 2.3rem, 2.8rem, -0.382174px, #252531);
-            
+    section{
+        @include mixin.flex(row, space-between, center);
+        .logo{
+            @include mixin.flex(row, center, center);
+            p{
+                @include mixin.font('Montserrat', normal, 700, 2.3rem, 2.8rem, -0.382174px, #252531);
+                
+            }
         }
-    }
-    
-    .store{
-        @include mixin.flex(row, center, center);
-    }
+        
+        .store{
+            @include mixin.flex(column, center, center);
+            p{
+                display: none;
+            }
+        }
     
    }
+}
+@media screen and (min-width: 768px) {
+    .main{
+        section{
+            .store{
+                p{
+                    display: block;
+                }
+            }
+        }
+    } 
 }
