@@ -10,13 +10,13 @@
     padding: 40px;
     @include mixin.flex(row, center,center);
     section{
-        @include mixin.flex(column, center,flex-start);
-        width: auto !important;
+        @include mixin.flex(column, center,center);
         height: auto;
+        width: auto;
         position: relative;
         background: #FCFCFC;
         border-radius: 6px;
-        padding: 30px !important;
+        padding: 30px;
         background-color: #fff;
         img{
             position: absolute;
@@ -38,7 +38,7 @@
             gap: 24px;
             button{
                 all: unset;
-                padding: 10px 16px;
+                padding: 10px 40px;
                 border-radius: 20px;
                 border: 1px solid #B7165D;
                 box-sizing: border-box;
@@ -47,4 +47,11 @@
             }
         }
         }
+}
+@media screen and (min-width: 768px) {
+    .main{
+        section{
+            width: auto;
+        }
+    }
 }
