@@ -17,6 +17,11 @@ export default function SignUp() {
         <strong>Cadastre-se</strong>
 
         <form>
+        <FormControl >
+            <FormLabel className={styles.label}>Nome</FormLabel>
+            <Input type='text' placeholder="Insira seu nome" />
+          </FormControl>
+
           <FormControl >
             <FormLabel className={styles.label}>E-mail</FormLabel>
             <Input type='email' placeholder="exemplo@email.com" />

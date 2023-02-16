@@ -1,15 +1,94 @@
+@use "../../../styles/mixin.module.scss";
 .main{
     height: 100vh;
     width: 100vw;
     background-color: rgba(0,0,0,.5);
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     z-index: 2;
+    @include mixin.flex(column, center, center);
     section{
+        @include mixin.flex(column, center, center);
         height: 100%;
         width: 100%;
-        background-color: #fff;
+        background: #FCFCFC;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+        border-radius: 6px;
         padding: 30px;
+        position: relative;
+        .x{
+            all: unset;
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            cursor: pointer;
+        }
+        .logo{
+            @include mixin.flex(column, flex-start, center);
+            margin-bottom: 40px;
+            img{
+                margin-bottom: 12px
+            }
+            p{
+                @include mixin.font('Montserrat', normal, 700, 2.2rem, 2.7rem, -0.38px, #252531);
+            }
+        }
+        form{
+            width: 100%;
+            @include mixin.flex(column, flex-start, center);
+            
+            label{
+                @include mixin.font('Public Sans', normal, 600, 1.3rem, 1.6rem, -0.382174px, #383842)
+            }
+            input{
+                width: 100%;
+                @include mixin.font('Public Sans', normal, 400, 1.6rem, 1.9rem, -0.382174px,#858585);
+                height: 40px;
+                margin-bottom: 24px;
+                background: #F8F8F8;
+                border: 1.5px solid #858585;
+                border-radius: 6px;
+            }
+            input:focus{
+                border-color: #B7005C;
+                box-shadow: 0 0 0 1px #B7005C;
+            }
+
+            .btns{
+                display: flex;
+                gap: 30px;
+                button{
+                    @include mixin.font('Public Sans', normal, 600, 1.6rem, 2rem, -0.38px, #F3F3F3);
+                    padding: 20px 25px;
+                    margin-top: 20px;
+                    margin-bottom: 35px;
+                    background: #B7005C;
+                    border-radius: 30px;
+    
+                }
+            }
+            .deleteUser{
+                all: unset;
+                text-decoration: underline;
+                color: #B7005C;
+                cursor: pointer;
+               
+            }
+        }
+    }
+}
+@media screen and (min-width: 768px) {
+    .main{
+        section{
+            @include mixin.flex(column, flex-start, center);
+            height: auto;
+            width: auto;
+            form{
+                input{
+                    width: 365px;
+                }
+            }
+        }
     }
 }

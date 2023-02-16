@@ -13,6 +13,9 @@ html {
   min-height: 100vh;
 }
 
+.overflow-hidden {
+  overflow: hidden;
+}
 
 section {
   margin: 0;
