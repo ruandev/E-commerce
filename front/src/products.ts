@@ -119,13 +119,5 @@ title: "Agenda Capa Dura Personalizada - Floral",
     sold: 30,
     stock: 10,
     description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa reprehenderit quisquam odit nisi veniam quos fuga consequatur laudantium facilis velit dolores, quasi qui ad, quia magni itaque quo ab architecto."
-}, {
-    id: 16,
-image: Caderno,
-title: "Agenda Capa Dura Personalizada - Floral",
-    price: "R$ 79,00",
-    sold: 30,
-    stock: 10,
-    description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa reprehenderit quisquam odit nisi veniam quos fuga consequatur laudantium facilis velit dolores, quasi qui ad, quia magni itaque quo ab architecto."
 }
 ]

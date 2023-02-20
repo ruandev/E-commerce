@@ -34,7 +34,7 @@ export default function OptionsStore({ setModalOptionStore }: Props) {
                         <Button style={{
                             background: "#FCFCFC", color: "#B7005C",
                             border: "1px solid #B7005C"
-                    }} onClick={() => setModalDiscardChanges(true)}>Cancelar</Button>
+                    }} onClick={() => setModalDiscardChanges(true)} className={styles.btnCancel}>Cancelar</Button>
                     </div>
                     
                     <Button className={styles.deleteUser}>Deletar loja</Button>

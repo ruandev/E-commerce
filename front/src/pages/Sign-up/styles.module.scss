@@ -52,6 +52,11 @@
             height: 56px;
             margin-bottom: 32px;
         }
+        button:hover {
+            transform: scale(1.05) !important;
+            box-shadow: 0px 4px 10px rgb(0 0 0 / 15%) !important;
+            background: rgba(183, 0, 92, 0.8)
+          }
         p{
             @include mixin.font('Public Sans', normal, 400, 1.6rem, 1.9rem, -0.382174px, #191919);
         }

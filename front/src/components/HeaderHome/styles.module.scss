@@ -31,11 +31,13 @@
             }
             button{
                 height: 100%;
-                background-color: #F4F4F4;;
+                background-color: #D10070;
                 position: absolute;
                 padding: 0px 10px;
                 top: 0;
                 right: 0;
+                border-top-right-radius: 6px;
+                border-bottom-right-radius: 6px;
                 img{
                     height: 23px;
                     width: 23px;

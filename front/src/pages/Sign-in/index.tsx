@@ -2,9 +2,20 @@ import styles from "./styles.module.scss"
 import Logo from "../../assets/logo.svg"
 import { Button, FormControl, FormHelperText, FormLabel, Input, Stack } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
+import { useToast } from '@chakra-ui/react'
 interface Props {}
 export default function SignIn() {
   const navigate = useNavigate()
+  const toast = useToast()
+  function handleToast() {
+    toast({
+      title: 'Login feito com sucesso!',
+      position: 'top-right',
+      duration: 700,
+      isClosable: true,
+      status: 'success',
+    })
+  }
   return (
     <main className={styles.main}>
       <section>
@@ -28,7 +39,10 @@ export default function SignIn() {
           </FormControl>
           
           <Stack spacing={4} direction='row' align='center'>
-            <Button size='lg' onClick={() => navigate("/pagina-inicial")}>
+            <Button size='lg' onClick={() => {
+              handleToast
+              navigate("/pagina-inicial")
+            }}>
               Fazer login
               </Button>
               </Stack>

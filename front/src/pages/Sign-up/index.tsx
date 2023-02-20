@@ -2,10 +2,22 @@ import styles from "./styles.module.scss"
 import Logo from "../../assets/logo.svg"
 import { Button, FormControl, FormLabel, Input, Stack } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
+import { useToast } from '@chakra-ui/react'
+
 interface Props {
 
 }
 export default function SignUp() {
+  const toast = useToast()
+  function handleToast() {
+    toast({
+        title: 'Conta criada com sucesso!',
+        position: 'top-right',
+        duration: 700,
+        isClosable: true,
+        status: 'success',
+      })
+}
   const navigate = useNavigate()
   return (
     <main className={styles.main}>
@@ -41,7 +53,7 @@ export default function SignUp() {
         <p className={styles.policyText}>Ao criar uma conta, você concorda com a nossa <span style={{ color: "#D10070" }}>Política de Privacidade</span> e <span style={{ color: "#D10070" }}>Termos de serviço</span></p>
 
         <Stack spacing={4} direction='row' align='center'>
-          <Button className='btn-create-account' size='lg'>
+          <Button className='btn-create-account' size='lg' onClick={handleToast}>
           Criar conta
           </Button>
         </Stack>

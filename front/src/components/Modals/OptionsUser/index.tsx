@@ -56,7 +56,7 @@ export default function OptionsUser({ setModalUser }: Props) {
                         {
                         setModalDiscardChanges(true)
                         }
-                        }>Cancelar</Button>
+                        } className={styles.btnCancel}>Cancelar</Button>
                     </div>
                     
                     <Button className={styles.deleteUser} onClick={() => setConfirmDeleteUser(true)}>Deletar usuário</Button>

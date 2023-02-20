@@ -1,14 +1,14 @@
 import { Input } from '@chakra-ui/react'
 import Cart from "../../assets/cart.svg"
 import Logo from "../../assets/logo.svg"
-import Search from "../../assets/search.svg"
+import Search from "../../assets/search2.svg"
 import Store from "../../assets/store.svg"
 import User from "../../assets/user.svg"
 import styles from "./styles.module.scss"
 import { useNavigate } from 'react-router-dom'
 import OptionsUser from '../Modals/OptionsUser'
 import { useState } from 'react'
-import {addOverFlow, removeOverflow} from "../../utils/handleOverFlow"
+import {addOverFlow} from "../../utils/handleOverFlow"
 export default function Header() {
   const navigate = useNavigate()
   const [modalUser, setModalUser] = useState(false);

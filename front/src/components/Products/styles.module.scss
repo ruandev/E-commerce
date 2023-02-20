@@ -13,22 +13,19 @@
         cursor: pointer;
         div{
             padding: 20px;
+            max-width: 280px;
             background: #FCFCFC;
             border-radius: 8px;
-            max-width: 382px;
             @include mixin.flex(column, start,center);
-            img{
-                width: 242px;
-                height: 242px
-            }
+
             .title{
-                @include mixin.font('Public Sans',normal,500,1.8rem, 2rem, -0.382174px, #191919);
+                @include mixin.font('Public Sans',normal,500,1.6rem, 1.9rem, -0.382174px, #191919);
                 margin-top: 14px;
                 margin-bottom: 8px;
                 max-width: 100%
             }
             .price{
-                @include mixin.font('Public Sans',normal,600, 3.2rem,3.8rem, -0.382174px, #D10070 );
+                @include mixin.font('Public Sans',normal,600, 2.6rem,3rem, -0.382174px, #D10070 );
                 text-align: start;
                 width: 100%;
             }
@@ -40,11 +37,6 @@
     .main{
         section{
             div{
-                img{
-                    width: 342px;
-                    height: 342px;
-                }
-                
                 .title{
                         @include mixin.font('Public Sans',normal,500,2.2rem,2.6rem,-0.382174px, #191919);
                     } 

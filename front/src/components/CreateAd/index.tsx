@@ -65,7 +65,7 @@ export default function CreateAt() {
         </form>
         <div className={styles.btns}>
           <Button style={{color: "#fff", background: "#B7005C"}} onClick={() => setModalPublised(true)}>Publicar anúncio</Button>
-          <Button onClick={() => setModalDiscardChanges(true)}>Cancelar</Button>
+          <Button className={styles.btnCancel} onClick={() => setModalDiscardChanges(true)}>Cancelar</Button>
           </div>
       </section>
     </main>

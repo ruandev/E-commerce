@@ -15,15 +15,19 @@ export default function DiscardChanges({ setModalUser, setModalOptionStore }: an
     if (window.location.pathname === "/cadastrar-produto") {
       navigate("/minha-loja")
       setModalDiscardChanges(false)
+      setModalOptionStore(false)
       removeOverflow()
       return
     }
+    
     setModalOptionStore(false)
-    setModalDiscardChanges(false)
-    setModalUser(false)
-    removeOverflow()
+      setModalUser(false)
+      setModalDiscardChanges(false)
+      removeOverflow()
+    
 
   }
+  
   return (
     <main className={styles.main}>
       <section>
@@ -34,7 +38,7 @@ export default function DiscardChanges({ setModalUser, setModalOptionStore }: an
         <p>As alterações realizadas não foram salvas, deseja descartá-las?</p>
         <div>
           <Button style={{ background: " #B7005C", color: "#F3F3F3" }} onClick={handleDiscard}>Descartar</Button>
-          <Button onClick={() => setModalDiscardChanges(false)}>Continuar editando</Button>
+          <Button onClick={() => setModalDiscardChanges(false)} className={styles.btnCancel}>Continuar editando</Button>
         </div>
       </section>
     </main>
