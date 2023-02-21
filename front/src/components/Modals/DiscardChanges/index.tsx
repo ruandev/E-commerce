@@ -21,11 +21,10 @@ export default function DiscardChanges({ setModalUser, setModalOptionStore }: an
     }
     
     setModalOptionStore(false)
-      setModalUser(false)
-      setModalDiscardChanges(false)
-      removeOverflow()
-    
-
+    setModalUser(false)
+    setModalDiscardChanges(false)
+    removeOverflow()
+  
   }
   
   return (

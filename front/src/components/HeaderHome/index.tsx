@@ -28,7 +28,7 @@ export default function Header() {
           <button><img src={Search} alt="pesquisar"/></button>
         </form>
         <div className={styles.icons}>
-            <div>
+            <div onClick={() => navigate('/carrinho')}>
             <img src={Cart} alt="carrinho" />
             <p>Meu carrinho</p>
             </div>
