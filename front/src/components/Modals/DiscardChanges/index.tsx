@@ -5,25 +5,22 @@ import { useNavigate } from 'react-router-dom'
 import useDiscardChanges from '../../../hooks/DiscardChanges/useDiscardChanges'
 import { removeOverflow } from '../../../utils/handleOverFlow'
 interface Props {
-  fnCloseModal: any
+  fnCloseModal?: any
 
 }
 export default function DiscardChanges({ fnCloseModal }: Props) {
   const { setModalDiscardChanges }: any = useDiscardChanges()
   const navigate = useNavigate()
   function handleDiscard() {
-    if (window.location.pathname === "/cadastrar-produto") {
-      navigate("/minha-loja")
-      setModalDiscardChanges(false)
+    if (fnCloseModal) {
       fnCloseModal(false)
-      removeOverflow()
-      return
-    }
-    
-    fnCloseModal(false)
+     }
     setModalDiscardChanges(false)
     removeOverflow()
-  
+
+    if (window.location.pathname === "/cadastrar-produto") {
+      navigate("/minha-loja")
+    }
   }
   
   return (

@@ -1,8 +1,7 @@
-import styles from "./styles.module.scss"
-import Trash from "../../assets/trash.svg"
 import Pencil from "../../assets/pencil.svg"
+import Trash from "../../assets/trash.svg"
 import { products } from '../../products'
-import { useState } from 'react'
+import styles from "./styles.module.scss"
 interface Props {
     setModalDeleteProduct: any
 }

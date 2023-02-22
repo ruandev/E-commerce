@@ -31,7 +31,7 @@ export default function CartProducts() {
                   </div>
                 </div>
               </td>
-              <td>R$ {(parseInt(product.price.split(" ")[1]) * number).toFixed(2).replace(".", ",")}</td>
+              <td>{(parseInt(product.price.split(" ")[1]) * number).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
               <td><Button><img src={Trash} alt="excluir" /></Button></td>
             </tr>
           })

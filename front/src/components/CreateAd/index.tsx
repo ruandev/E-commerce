@@ -12,11 +12,11 @@ export default function CreateAt() {
   function handleUploadImage(e: any) {
    setUploadImage(e.target.files[0])
   }
-  
+ 
   return (
     <main className={styles.main}>
       <section>
-        {modalDiscardChanges && <DiscardChanges/>}
+        {modalDiscardChanges && <DiscardChanges />}
         {modalPublished && <Published setModalPublised={setModalPublised} />}
         <form>
         <h1>Adicionar novo produto</h1>

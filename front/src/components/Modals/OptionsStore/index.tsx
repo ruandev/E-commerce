@@ -6,13 +6,13 @@ import { useState } from 'react';
 import useDiscardChanges from '../../../hooks/DiscardChanges/useDiscardChanges';
 import DiscardChanges from '../DiscardChanges';
 interface Props {   
-    setModalOptionStore: any
+    fnCloseModal: any
 }
-export default function OptionsStore({ setModalOptionStore }: Props) {
+export default function OptionsStore({ fnCloseModal }: Props) {
     const {modalDiscardChanges, setModalDiscardChanges} = useDiscardChanges()
     return (
         <main className={styles.main}>
-            {modalDiscardChanges && <DiscardChanges fnCloseModal={setModalOptionStore}/>}
+            {modalDiscardChanges && <DiscardChanges fnCloseModal={fnCloseModal}/>}
             <section>
                 <Button className={styles.x} onClick={() => setModalDiscardChanges(true)}>
                     <img src={X} alt="x" />

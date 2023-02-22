@@ -19,7 +19,7 @@ export default function HeaderStore() {
     }
   return (
       <main className={styles.main}>
-          {modalOptionStore && <OptionsStore setModalOptionStore={setModalOptionStore} />}
+          {modalOptionStore && <OptionsStore fnCloseModal={setModalOptionStore} />}
           <section>
               <img style={{cursor: "pointer"}} src={LessThan} alt="voltar" onClick={handleCurrentPath}/>
               <div className={styles.logo}>
