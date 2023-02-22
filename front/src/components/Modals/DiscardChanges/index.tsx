@@ -4,24 +4,23 @@ import { Button } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import useDiscardChanges from '../../../hooks/DiscardChanges/useDiscardChanges'
 import { removeOverflow } from '../../../utils/handleOverFlow'
-// interface Props {
-//   setModalUser: any
-//Componente CreateAD reclamando se eu colocar no props
-// }
-export default function DiscardChanges({ setModalUser, setModalOptionStore }: any) {
+interface Props {
+  fnCloseModal: any
+
+}
+export default function DiscardChanges({ fnCloseModal }: Props) {
   const { setModalDiscardChanges }: any = useDiscardChanges()
   const navigate = useNavigate()
   function handleDiscard() {
     if (window.location.pathname === "/cadastrar-produto") {
       navigate("/minha-loja")
       setModalDiscardChanges(false)
-      setModalOptionStore(false)
+      fnCloseModal(false)
       removeOverflow()
       return
     }
     
-    setModalOptionStore(false)
-    setModalUser(false)
+    fnCloseModal(false)
     setModalDiscardChanges(false)
     removeOverflow()
   

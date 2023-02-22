@@ -12,7 +12,7 @@ export default function OptionsStore({ setModalOptionStore }: Props) {
     const {modalDiscardChanges, setModalDiscardChanges} = useDiscardChanges()
     return (
         <main className={styles.main}>
-            {modalDiscardChanges && <DiscardChanges setModalOptionStore={setModalOptionStore}/>}
+            {modalDiscardChanges && <DiscardChanges fnCloseModal={setModalOptionStore}/>}
             <section>
                 <Button className={styles.x} onClick={() => setModalDiscardChanges(true)}>
                     <img src={X} alt="x" />

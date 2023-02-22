@@ -20,7 +20,7 @@ export default function TableProducts() {
           <TableContainer className={styles.tableContainer}>
             <Table>
               <Thead style={{position: "relative"}}>
-                <Tr >
+                <Tr>
                 <Th></Th>
                   <Th >Nome</Th>
                   <Th>Estoque</Th>

@@ -42,7 +42,6 @@ export default function MainRoutes() {
 					} />
 				<Route path='/carrinho' element={
 					<div>
-						<HeaderHome/>
 						<Cart />
 					</div>
 					} />

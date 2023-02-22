@@ -9,7 +9,7 @@ export default function CancelDeleteUser({ setConfirmDeleteUser }: Props) {
 
   return (
     <main className={styles.main}>
-      <section>
+      <section className={styles.secDelete}>
         <img src={X} alt="x" onClick={() => {
           setConfirmDeleteUser(false)
         }} />

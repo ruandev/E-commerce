@@ -1,0 +1,53 @@
+@use "../../styles/mixin.module.scss";
+.tbody{
+    tr{
+        height: 120px;
+        border-bottom: 1px solid #E5E5E5;
+        .tdImage{
+            padding: 0;
+            img{
+                object-fit: contain;
+                max-width: none;
+                width: auto;
+                height: 100px;
+            }
+        }
+        td{
+            padding: 0;
+            @include mixin.font('Public Sans', normal, 400, 1.6rem, 1.9rem, -0.382174px, #191919);
+            text-align: center;
+            background: #fcfbfb;
+            button{
+                all: unset;
+                cursor: pointer;
+                img{
+                    height: 30px;
+                }
+            }
+            .count{
+                display: flex;
+                gap: 16px;
+                align-items: center;
+                p{
+                    @include mixin.font('Public Sans', normal, 400, 1.4rem, 1.6rem, -0.382174px, #858585);
+                }
+                div{
+                    width: 100px;
+                    background: #F4F4F4;
+                    border-radius: 6px;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    @include mixin.font('Public Sans', normal, 400, 1.6rem, 1.9rem, -0.382174px, #191919);
+                    padding: 7px 0px;
+                    
+                    span{
+                        @include mixin.font('Public Sans', normal, 900, 1.6rem, 1.9rem, -0.382174px, #B7005C);
+                        margin: 0px 10px;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}

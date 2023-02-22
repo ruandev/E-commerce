@@ -17,7 +17,7 @@ export default function OptionsUser({ setModalUser }: Props) {
     return (
         <main className={styles.main}>
             {confirmDeleteUser && <CancelDeleteUser setConfirmDeleteUser={setConfirmDeleteUser} />}
-            {modalDiscardChanges && <DiscardChanges setModalUser={setModalUser} />}
+            {modalDiscardChanges && <DiscardChanges fnCloseModal={setModalUser} />}
             <section>
                 <Button className={styles.x} onClick={ () => setModalDiscardChanges(true)}>
                     <img src={X} alt="x" />
