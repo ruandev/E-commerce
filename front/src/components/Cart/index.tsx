@@ -3,11 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import LessThan from "../../assets/lessThan.svg";
 import CartProducts from '../CartProducts';
 import styles from "./styles.module.scss";
+import { products } from '../../products';
+import { useState } from 'react';
+import Checkout from '../Modals/Checkout';
+
 export default function Cart() {
     const navigate = useNavigate();
+    const [modalCheckout, setModalCheckout] = useState(true)
     
     return (
         <main className={styles.main}>
+            {modalCheckout && <Checkout/>}
             <section>
                 <TableContainer className={styles.containerTable}>
                     <Table variant='simple'>
@@ -22,7 +28,8 @@ export default function Cart() {
                                 <Th></Th>
                             </Tr>
                         </Thead>
-                        <CartProducts/>
+                        {products.map((product: any) => {
+                            return <CartProducts product={product} key={product.id} />})}
                     </Table>
                 </TableContainer>
                 <div className={styles.checkout}>

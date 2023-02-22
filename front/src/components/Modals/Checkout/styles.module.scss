@@ -1,0 +1,17 @@
+@use "../../../styles/mixin.module.scss";
+.container{
+    width: 100vw;
+    height: 100vh;
+    background: red;
+    position: absolute;
+    top: 0;
+    left: 0;
+    // @include mixin.flex(row,center,center);
+    z-index: 3;
+    .sec {
+        padding: 30px;
+        width: 100%;
+        height: auto;
+        border-radius: 0;
+    }
+}

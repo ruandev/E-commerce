@@ -1,0 +1,52 @@
+@use "../../../styles/mixin.module.scss";
+.main{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.5);
+    padding: 40px;
+    @include mixin.flex(row, center,center);
+    .secDelete{
+        @include mixin.flex(column, center,center);
+        height: auto;
+        width: auto;
+        position: relative;
+        background: #FCFCFC;
+        border-radius: 6px;
+        padding: 30px;
+        background-color: #fff;
+        box-shadow: 0px 4px 10px rgb(0 0 0 / 15%);
+        img{
+            position: absolute;
+            top: 12.5px;
+            right: 12.5px;
+            cursor: pointer;
+        }
+        h1{
+            @include mixin.font('Public Sans',normal, 500, 2.4rem, 2.8rem, -0.382174px, #32323B);
+            margin-bottom: 24px;
+        }
+        p{
+            word-wrap: break-word;
+            @include mixin.font('Public Sans',normal, 400, 1.8rem, 2.2rem, -0.382174px, #191919);
+            margin-bottom: 24px;
+        }
+        div{
+            display: flex;
+            gap: 24px;
+            button{
+                all: unset;
+                padding: 10px 40px;
+                border-radius: 20px;
+                border: 1px solid #B7165D;
+                box-sizing: border-box;
+                cursor: pointer;
+                @include mixin.font('Public Sans',normal, 600, 1.8rem, 2.2rem, -0.382174px, #B7165D);
+            }
+        }
+        }
+}
+

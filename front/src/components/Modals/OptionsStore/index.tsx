@@ -5,13 +5,16 @@ import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
 import { useState } from 'react';
 import useDiscardChanges from '../../../hooks/DiscardChanges/useDiscardChanges';
 import DiscardChanges from '../DiscardChanges';
+import CancelDeleteStore from '../CancelDeleteStore';
 interface Props {   
     fnCloseModal: any
 }
 export default function OptionsStore({ fnCloseModal }: Props) {
-    const {modalDiscardChanges, setModalDiscardChanges} = useDiscardChanges()
+    const { modalDiscardChanges, setModalDiscardChanges } = useDiscardChanges()
+    const [confirmDeleteStore, setConfirmDeleteStore] = useState(false)
     return (
         <main className={styles.main}>
+            {confirmDeleteStore && <CancelDeleteStore setConfirmDeleteStore={setConfirmDeleteStore}/>}
             {modalDiscardChanges && <DiscardChanges fnCloseModal={fnCloseModal}/>}
             <section>
                 <Button className={styles.x} onClick={() => setModalDiscardChanges(true)}>
@@ -37,7 +40,7 @@ export default function OptionsStore({ fnCloseModal }: Props) {
                     }} onClick={() => setModalDiscardChanges(true)} className={styles.btnCancel}>Cancelar</Button>
                     </div>
                     
-                    <Button className={styles.deleteUser}>Deletar loja</Button>
+                    <Button className={styles.deleteUser} onClick={() => setConfirmDeleteStore(true)}>Deletar loja</Button>
                 </form>
             </section>
         </main>
