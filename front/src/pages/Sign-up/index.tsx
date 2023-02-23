@@ -1,24 +1,45 @@
-import styles from "./styles.module.scss"
-import Logo from "../../assets/logo.svg"
-import { Button, FormControl, FormLabel, Input, Stack } from '@chakra-ui/react'
+import { Button, FormControl, FormLabel, Input, Stack, useToast } from '@chakra-ui/react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useToast } from '@chakra-ui/react'
+import api from '../../api'
+import Logo from "../../assets/logo.svg"
+import styles from "./styles.module.scss"
 
-interface Props {
-
-}
 export default function SignUp() {
+  const navigate = useNavigate()
+  const [form, setForm] = useState({
+    frist_name: "",
+    last_name: "",
+    email: "",
+    password: "",
+    cpassword: ""
+  })
   const toast = useToast()
   function handleToast() {
     toast({
-        title: 'Conta criada com sucesso!',
-        position: 'top-right',
-        duration: 700,
-        isClosable: true,
-        status: 'success',
-      })
-}
-  const navigate = useNavigate()
+      title: 'Conta criada com sucesso!',
+      position: 'top-right',
+      duration: 700,
+      isClosable: true,
+      status: 'success',
+    })
+  }
+  function handleInput(e: any) {
+    setForm({...form, [e.target.name]: e.target.value})
+  }
+  async function handleSubmit(e: any) {
+    e.preventDefault()
+    // delete form.cpassword
+    try {
+      await api.post("/user/cadaster", form)
+      handleToast()
+      setTimeout(() => {
+      navigate("/entrar")
+      }, 800)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <main className={styles.main}>
       <section>
@@ -28,35 +49,43 @@ export default function SignUp() {
         </div>
         <strong>Cadastre-se</strong>
 
-        <form>
-        <FormControl >
+        <form onSubmit={handleSubmit}>
+          <FormControl >
             <FormLabel className={styles.label}>Nome</FormLabel>
-            <Input type='text' placeholder="Insira seu nome" />
+            <Input type='text' placeholder="Insira seu nome" onChange={handleInput} name="frist_name"/>
+          </FormControl>
+
+          <FormControl >
+            <FormLabel className={styles.label}>Sobrenome</FormLabel>
+            <Input type='text' placeholder="Insira seu Sobrenome" onChange={handleInput} name="last_name"/>
           </FormControl>
 
           <FormControl >
             <FormLabel className={styles.label}>E-mail</FormLabel>
-            <Input type='email' placeholder="exemplo@email.com" />
+            <Input type='email' placeholder="exemplo@email.com" onChange={handleInput} name="email"/>
           </FormControl>
 
           <FormControl >
             <FormLabel className={styles.label}>Senha</FormLabel>
-            <Input type='password' placeholder="Insira sua senha" />
+            <Input type='password' placeholder="Insira sua senha" onChange={handleInput} name="password"/>
           </FormControl>
 
           <FormControl >
             <FormLabel className={styles.label}>Confirme sua senha</FormLabel>
-            <Input type='password' placeholder="Confirme sua senha" />
+            <Input type='password' placeholder="Confirme sua senha" onChange={handleInput} name="cpassword"/>
           </FormControl>
-        </form>
+          <p className={styles.policyText}>Ao criar uma conta, você concorda com a nossa <span style={{ color: "#D10070" }}>Política de Privacidade</span> e <span style={{ color: "#D10070" }}>Termos de serviço</span></p>
 
-        <p className={styles.policyText}>Ao criar uma conta, você concorda com a nossa <span style={{ color: "#D10070" }}>Política de Privacidade</span> e <span style={{ color: "#D10070" }}>Termos de serviço</span></p>
-
-        <Stack spacing={4} direction='row' align='center'>
-          <Button className='btn-create-account' size='lg' onClick={handleToast}>
-          Criar conta
+          <Stack spacing={4} direction='row' align='center'>
+          
+            <Button className='btn-create-account' size='lg' type='submit'>
+            Criar conta
           </Button>
         </Stack>
+        </form>
+
+        
+        
         <p className='sign-in'>Já tem uma conta? <span style={{ color: "#B7005C", textDecoration: "underline", cursor: "pointer" }} onClick={() => navigate("/entrar")}>Fazer login</span></p>
       </section>
     </main>

@@ -18,13 +18,15 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.0",
     "sass": "^1.57.1",
-    "scss": "^0.2.4"
+    "scss": "^0.2.4",
+    "yup": "^1.0.0"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/jquery": "^3.5.16",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
+    "@types/yup": "^0.32.0",
     "@vitejs/plugin-react": "^3.0.0",
     "typescript": "^4.9.3",
     "vite": "^4.0.0"
