@@ -6,14 +6,20 @@ import styles from "./styles.module.scss";
 import { products } from '../../products';
 import { useState } from 'react';
 import Checkout from '../Modals/Checkout';
+import Published from '../Modals/Published';
 
 export default function Cart() {
     const navigate = useNavigate();
+    const [phrase, setPhrase] = useState({})
     const [modalCheckout, setModalCheckout] = useState(false)
+    const [modalFinished, setModalFinished] = useState(false)
+
+
     
     return (
         <main className={styles.main}>
-            {modalCheckout && <Checkout setModalCheckout={setModalCheckout} />}
+            {modalCheckout && <Checkout setModalCheckout={setModalCheckout} setPhrase={setPhrase} setModalFinished={setModalFinished} />}
+            {modalFinished && <Published phrase={phrase} setModalPublished={setModalFinished}  />}
             <section>
                 <TableContainer className={styles.containerTable}>
                     <Table variant='simple'>

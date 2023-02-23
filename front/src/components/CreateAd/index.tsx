@@ -8,7 +8,8 @@ import useDiscardChanges from "../../hooks/DiscardChanges/useDiscardChanges"
 export default function CreateAt() {
   const {modalDiscardChanges, setModalDiscardChanges}: any = useDiscardChanges()
   const [uploadImage, setUploadImage]: any = useState("")
-  const [modalPublished, setModalPublised] = useState(false)
+  const [modalPublished, setModalPublished] = useState(false)
+  const [phrase, setPhrase] = useState({})
   function handleUploadImage(e: any) {
    setUploadImage(e.target.files[0])
   }
@@ -17,7 +18,7 @@ export default function CreateAt() {
     <main className={styles.main}>
       <section>
         {modalDiscardChanges && <DiscardChanges />}
-        {modalPublished && <Published setModalPublised={setModalPublised} />}
+        {modalPublished && <Published setModalPublished={setModalPublished} phrase={phrase} />}
         <form>
         <h1>Adicionar novo produto</h1>
           <div className={styles.titleAndCategory}>
@@ -64,7 +65,13 @@ export default function CreateAt() {
           </FormControl>
         </form>
         <div className={styles.btns}>
-          <Button style={{color: "#fff", background: "#B7005C"}} onClick={() => setModalPublised(true)}>Publicar anúncio</Button>
+          <Button style={{ color: "#fff", background: "#B7005C" }} onClick={() => {
+            setPhrase({
+                h1: "O anúncio foi publicado",
+               p: "O anúncio está ativo e o produto disponível para venda"
+             })
+            setModalPublished(true)
+          }}>Publicar anúncio</Button>
           <Button className={styles.btnCancel} onClick={() => setModalDiscardChanges(true)}>Cancelar</Button>
           </div>
       </section>

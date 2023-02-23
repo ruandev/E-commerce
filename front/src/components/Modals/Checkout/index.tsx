@@ -1,10 +1,13 @@
 import { Button, FormControl, FormLabel, Input, Select } from '@chakra-ui/react';
+import { useState } from 'react';
 import DELIVERY from "../../../assets/delivery.svg";
 import styles from "./styles.module.scss";
 interface Props{
     setModalCheckout: any
+    setPhrase: any
+    setModalFinished?: any
 }
-export default function Checkout({setModalCheckout}: Props) {
+export default function Checkout({ setModalCheckout, setPhrase, setModalFinished }: Props) {
     return (
         <main className={styles.container}>
             <section className={styles.sec}>
@@ -24,7 +27,14 @@ export default function Checkout({setModalCheckout}: Props) {
                         </Select>
                     </FormControl>
                     <div className={styles.btnsCheckout}>
-                        <Button>Confirmar</Button>
+                        <Button onClick={() => {
+                            setModalCheckout(false)
+                            setModalFinished(true)
+                            setPhrase({
+                                h1: "A compra foi concluida ",
+                                p: "Dentro de alguns instantes sua compra será enviada"
+                             })
+                        }}>Confirmar</Button>
                         <Button style={{background: "#FCFCFC", color: "#B7005C", border: "1px solid #B7005C"}}onClick={() => setModalCheckout(false)}>Cancelar</Button>
                     </div>
                 </form>

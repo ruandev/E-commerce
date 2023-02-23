@@ -1,5 +1,5 @@
 @use "../../../styles/mixin.module.scss";
-.main{
+.container{
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -9,7 +9,9 @@
     background: rgba(0,0,0,0.5);
     padding: 40px;
     @include mixin.flex(row, center,center);
-    section{
+    .sec{
+        height: auto;
+        width: auto;
         @include mixin.flex(column, center,center);
         position: relative;
         background: #FCFCFC;
