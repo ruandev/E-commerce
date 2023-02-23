@@ -9,11 +9,11 @@ import Checkout from '../Modals/Checkout';
 
 export default function Cart() {
     const navigate = useNavigate();
-    const [modalCheckout, setModalCheckout] = useState(true)
+    const [modalCheckout, setModalCheckout] = useState(false)
     
     return (
         <main className={styles.main}>
-            {modalCheckout && <Checkout/>}
+            {modalCheckout && <Checkout setModalCheckout={setModalCheckout} />}
             <section>
                 <TableContainer className={styles.containerTable}>
                     <Table variant='simple'>
@@ -36,7 +36,7 @@ export default function Cart() {
                     <Button className={styles.back} onClick={() => navigate('/pagina-inicial')}><img src={LessThan} alt="voltar"/></Button>
                     <div>
                     <p>Total (0 item): R$0,00</p>
-                    <Button>Continuar</Button>
+                        <Button onClick={() => setModalCheckout(true)}>Continuar</Button>
                     </div>
                 </div>
             </section>

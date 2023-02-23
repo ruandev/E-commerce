@@ -2,16 +2,61 @@
 .container{
     width: 100vw;
     height: 100vh;
-    background: red;
+    background: rgba(0, 0, 0,0.5);
     position: absolute;
     top: 0;
     left: 0;
-    // @include mixin.flex(row,center,center);
+    @include mixin.flex(row,center,center);
     z-index: 3;
     .sec {
         padding: 30px;
         width: 100%;
-        height: auto;
+        height: 100%;
         border-radius: 0;
+        @include mixin.flex(column,center,center);
+        .title{
+            @include mixin.flex(column,center,center);
+            @include mixin.font('Public Sans', normal, 600, 2rem, 2.4rem,-0.382174px, #383842);
+            margin: 50px 0px 20px 0px;
+            gap: 20px;
+        }
+        form{
+            width: 100%;
+            label{
+                margin-bottom: 2px;
+            }
+            input{
+                margin-bottom: 30px;
+            }
+            select,input{
+                height: 40px;
+            }
+            .btnsCheckout{
+                margin-top: 40px;
+                @include mixin.flex(row,center,center);
+                gap: 40px;
+                button{
+                    padding: 22px 24px;
+                    @include mixin.font('Public Sans', normal, 600, 1.4rem, 1.7rem,-0.382174px, #F3F3F3);
+                    background: #B7005C;
+                    border-radius: 24px;
+                }
+            }
+        }
+    }
+}
+@media screen and (min-width: 768px) {
+    .container{
+        .sec{
+            width: auto;
+            height: auto;
+            border-radius: 30px;
+            padding: 50px;
+            form{
+                input{
+                    width: 350px;
+                }
+            }
+        }
     }
 }
