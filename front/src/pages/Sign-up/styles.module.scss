@@ -51,6 +51,8 @@
             border-radius: 30px;
             height: 56px;
             margin-bottom: 32px;
+            min-width: 109.44px;
+            
         }
         button:hover {
             transform: scale(1.05) !important;
@@ -67,6 +69,11 @@
 @media screen and (min-width: 768px) {
     .main{
         background: #F4F4F4; 
+        min-height: 100vh;
+        max-width: 100vw;
+        padding: 40px 0px;
+        height: auto;
+        width: auto;
         section{
             width: auto;
             height: auto;
@@ -75,6 +82,7 @@
             input{
                 width: 382px;
             }
+            
         }
     }
         

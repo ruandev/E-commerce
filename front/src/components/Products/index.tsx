@@ -1,26 +1,41 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import api from '../../api';
 import useProduct from '../../hooks/Product/useProduct';
-import { IStateProduct } from '../../interfaces/Product/IStateProduct.type';
-import { products } from '../../products';
+import useStorage from '../../hooks/Storage/useStorage';
+import { IStateProduct } from '../../interfaces/IStateProduct.type';
+import headers from '../../utils/Token';
 import styles from "./styles.module.scss";
 export default function Products() {
   const {setProductDetail}: IStateProduct = useProduct()
-  
+  const [allProducts, setAllProducts] = useState([])
   const navigate = useNavigate();
-
+  const { storage } = useStorage()
   function handleProduct(product: any) {
     setProductDetail(product)
     navigate("/detalhamento-produto")
   }
-
+  useEffect(() => {
+    handleProducts()
+  }, [])
+  
+  async function handleProducts() {
+  try {
+    const {data} = await api.get("/product/findAll", headers(storage?.token))
+    setAllProducts(data)
+  } catch (error) {
+    console.log(error)
+  }
+  } 
   return (
     <main className={styles.main}>
       <section>
-        {products.map((product: any) => {
+        {allProducts?.map((product: any) => {
+          console.log(product)
           return <div key={product?.id} className={styles.product} onClick={()=> handleProduct(product)}>
-            <img src={product?.image} alt="imagem" className={styles.img} />
+            <img src={product?.url_image} alt="imagem" className={styles.img} />
             <p className={styles.title}>{product?.title}</p>
-            <p className={styles.price}>{product?.price}</p>
+            <p className={styles.price}>{product?.unt_price}</p>
           </div>
         })}
       </section>

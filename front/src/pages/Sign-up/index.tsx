@@ -1,13 +1,14 @@
-import { Button, FormControl, FormLabel, Input, Stack, useToast } from '@chakra-ui/react'
+import { Button, CircularProgress, FormControl, FormLabel, Input, Stack, useToast } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import api from '../../api'
 import Logo from "../../assets/logo.svg"
 import styles from "./styles.module.scss"
-
+import { IFormCadaster } from '../../interfaces/FormCadasterUser'
 export default function SignUp() {
+  const [circle, setCircle] = useState(false)
   const navigate = useNavigate()
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<IFormCadaster>({
     frist_name: "",
     last_name: "",
     email: "",
@@ -29,14 +30,16 @@ export default function SignUp() {
   }
   async function handleSubmit(e: any) {
     e.preventDefault()
-    // delete form.cpassword
+    delete form.cpassword
     try {
+      setCircle(true)
       await api.post("/user/cadaster", form)
       handleToast()
       setTimeout(() => {
       navigate("/entrar")
-      }, 800)
+      }, 1000)
     } catch (error) {
+      setCircle(false)
       console.log(error)
     }
   }
@@ -79,7 +82,7 @@ export default function SignUp() {
           <Stack spacing={4} direction='row' align='center'>
           
             <Button className='btn-create-account' size='lg' type='submit'>
-            Criar conta
+            {circle ? <CircularProgress isIndeterminate color='green.400' thickness='10px' size='35px' /> : "Criar conta"}
           </Button>
         </Stack>
         </form>

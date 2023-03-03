@@ -3,13 +3,15 @@ import Trash from "../../assets/trash.svg"
 import { products } from '../../products'
 import styles from "./styles.module.scss"
 interface Props {
-    setModalDeleteProduct: any
+    setModalDeleteProduct: any,
+    products: any,
+
 }
-export default function MyProducts({setModalDeleteProduct}: Props) {
+export default function MyProducts({setModalDeleteProduct, products}: Props) {
     function handleDeleteProduct(product: any) {
-        setModalDeleteProduct(true)
-        console.log(product)
+        setModalDeleteProduct(true)    
     }
+    
     return (
         <tbody className={styles.tbody}>
         {products.map((product: any) => {

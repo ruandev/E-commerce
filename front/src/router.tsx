@@ -1,17 +1,18 @@
-import { Routes, Route, Outlet, Navigate } from 'react-router-dom';
-import HeaderHome from './components/HeaderHome';
+import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
+import Cart from './components/Cart';
+import CreateAt from './components/CreateAd';
 import DetailProduct from './components/DetailProducts';
+import HeaderHome from './components/HeaderHome';
+import HeaderStore from './components/HeaderStore';
+import useStorage from "./hooks/Storage/useStorage";
 import Home from './pages/Home';
 import SignIn from './pages/Sign-in';
 import SignUp from './pages/Sign-up';
 import Store from './pages/Store';
-import HeaderStore from './components/HeaderStore';
-import CreateAt from './components/CreateAd';
-import Cart from './components/Cart';
 export default function MainRoutes() {
+	const {storage} = useStorage()
 	function ProtectedRoutes({ redirectTo }: any) {
-		const isAuthenticated = true;
-		return isAuthenticated ? <Outlet /> : <Navigate to={redirectTo} />;
+		return storage?.token ? <Outlet /> : <Navigate to={redirectTo} />;
 	}
 	return (
 		<Routes>
@@ -31,7 +32,7 @@ export default function MainRoutes() {
 					<Route path='/pagina-inicial' element={
 					<div>
 					<HeaderHome/>	
-						<Home />
+						<Home/>
 					</div>
 					} />
 				<Route path='/detalhamento-produto' element={

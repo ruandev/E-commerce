@@ -1,13 +1,33 @@
 import { Button, Table, TableContainer,  Th, Thead, Tr } from '@chakra-ui/react';
 import styles from "./styles.module.scss";
 import MyProducts from "../MyProducts"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DeleteProduct from '../Modals/DeleteProduct';
 import { useNavigate } from 'react-router-dom';
 import UncreatedProducts from '../UncreatedProducts';
+import api from '../../api';
+import headers from '../../utils/Token';
+import useStorage from '../../hooks/Storage/useStorage';
 export default function TableProducts() {
   const navigate = useNavigate()
   const [modalDeleteProduct, setModalDeleteProduct] = useState(false)
+  const [products, setProducts] = useState([])
+  const { storage, setStorage } = useStorage()
+
+  useEffect(() => {
+    handleProducts()
+  }, [])
+  
+  async function handleProducts() {
+  try {
+    const {data} = await api.get("/product/findAll", headers(storage?.token))
+    setProducts(data)
+  } catch (error) {
+    console.log(error)
+  }
+  } 
+
+
   return (
     <main className={styles.main}>
       {modalDeleteProduct && <DeleteProduct setModalDeleteProduct={setModalDeleteProduct} />}
@@ -29,8 +49,8 @@ export default function TableProducts() {
                   <Th>Editar/Apagar</Th>
                 </Tr>
               </Thead>
-              <UncreatedProducts/>
-              {/* <MyProducts setModalDeleteProduct={setModalDeleteProduct} /> */}
+              {products ? <UncreatedProducts/> :
+              <MyProducts setModalDeleteProduct={setModalDeleteProduct}  products={products} />}
             </Table>
           </TableContainer>
         </div>

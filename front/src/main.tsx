@@ -6,13 +6,16 @@ import { ChakraProvider } from '@chakra-ui/react'
 import MainRoutes from './router'
 import { ProductProvider } from './context/ProductContext';
 import { DiscardChangesProvider } from './context/DiscardChanges';
+import { StorageProvider } from './context/StorageContext';
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ChakraProvider>
       <BrowserRouter>
         <ProductProvider>
           <DiscardChangesProvider>
-            <MainRoutes />
+          <StorageProvider>
+              <MainRoutes />
+              </StorageProvider>
             </DiscardChangesProvider>
       </ProductProvider>
       </BrowserRouter>

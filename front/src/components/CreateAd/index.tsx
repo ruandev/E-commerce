@@ -1,79 +1,133 @@
 import { Button, FormControl, FormLabel, Input, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Select, Textarea } from '@chakra-ui/react';
 import styles from "./styles.module.scss";
 import UploadImage from "../../assets/addImage.svg";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Published from "../Modals/Published"
 import DiscardChanges from "../Modals/DiscardChanges"
 import useDiscardChanges from "../../hooks/DiscardChanges/useDiscardChanges"
+import { IAddProduct } from '../../interfaces/IAddProduct.type';
+import useStorage from '../../hooks/Storage/useStorage';
+import headers from '../../utils/Token';
+import api from '../../api';
+import { IFile } from '../../interfaces/IFile.type';
 export default function CreateAt() {
+  const [form, setForm] = useState<IAddProduct> ({
+    title: "",
+    category_id: "",
+    product_description: "",
+    unt_price: Number(""),
+    stock: Number(""),
+    url_image: "",
+    path_image: ""
+  })
+  const [sla, setSla] = useState<any>("")
+  const [categories, setCategories] = useState([])
+  const {storage} = useStorage()
   const {modalDiscardChanges, setModalDiscardChanges}: any = useDiscardChanges()
-  const [uploadImage, setUploadImage]: any = useState("")
+  const [file, setFile] = useState<any>("")
   const [modalPublished, setModalPublished] = useState(false)
   const [phrase, setPhrase] = useState({})
-  function handleUploadImage(e: any) {
-   setUploadImage(e.target.files[0])
+  
+  async function handleCategories() {
+    try {
+      const { data } = await api.get('/categories', headers(storage?.token))
+      setCategories(data)
+    } catch (error) {
+      return error
+    }
   }
- 
+  useEffect(() => {
+    handleCategories()
+  },[])
+  function handleInputs(e: any) { 
+    setForm({ ...form, [e.target.name]: e.target.value})
+  }
+  async function handleUploadImage(file: File) {
+    const formData = new FormData();
+    formData.append('file', file);
+    try {
+      const { data } = await api.post(`/product/upload/${storage?.user.id}`, formData, headers(storage?.token, file))
+     return data
+    } catch (error) {
+      console.log(error)
+      return error
+    }
+    
+  }
+  
+
+ async function handleSubmit(e: any) { 
+   e.preventDefault()
+   
+   try {
+    const image = await handleUploadImage(file)
+      form.url_image = image.url
+     form.path_image = image.path
+     form.stock = Number(form.stock)
+     form.unt_price = Number(form.unt_price)
+     setForm(form)
+     const { data } = await api.post(`/product/cadaster/${storage?.merchant.id}`, form, headers(storage?.token))
+    console.log(data)
+
+    //   setPhrase({
+    //     h1: "O anúncio foi publicado",
+    //    p: "O anúncio está ativo e o produto disponível para venda"
+    //  })
+    // setModalPublished(true)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <main className={styles.main}>
       <section>
         {modalDiscardChanges && <DiscardChanges />}
         {modalPublished && <Published setModalPublished={setModalPublished} phrase={phrase} />}
-        <form>
+        <form onSubmit={handleSubmit}>
         <h1>Adicionar novo produto</h1>
           <div className={styles.titleAndCategory}>
           <FormControl className={styles.title}>
             <FormLabel>Título</FormLabel>
-            <Input type='text' placeholder='Nome do produto' />
+            <Input type='text' placeholder='Nome do produto' name="title" onChange={handleInputs} />
           </FormControl>
           <FormControl className={styles.select}> 
           <FormLabel>Categoria</FormLabel>
-              <Select required>
-              <option value="" disabled selected>Selecione...</option>
-            <option value='option1'>Option 1</option>
-            <option value='option2'>Option 2</option>
-            <option value='option3'>Option 3</option>
+              <Select required name="category_id" onChange={handleInputs}>
+                <option value="" disabled selected>Selecione...</option>
+                {categories.map((categorie: any) => {
+                  return <option key={categorie.id} value={categorie.id}>{categorie.description}</option>
+                })}
             </Select>
             </FormControl>
           </div>
           <FormControl>
           <FormLabel>Descrição do produto</FormLabel>
-            <Textarea placeholder='Ex.: Camiseta branca, Tamanho G' className={styles.textField} />
+            <Textarea placeholder='Ex.: Camiseta branca, Tamanho G' className={styles.textField} name="product_description" onChange={handleInputs} />
             </FormControl>
           <div className={styles.priceAndStock}>
             <FormControl>
-              <FormLabel className={styles.price}>Preço</FormLabel>
-              <Input type='text' placeholder='R$' />
+              <FormLabel className={styles.price} >Preço</FormLabel>
+              <Input type='number' placeholder='R$' name="unt_price" onChange={handleInputs}/>
             </FormControl>
           <FormControl>
               <FormLabel className={styles.stock}> Estoque</FormLabel>
-            <NumberInput max={1000000} min={1}>
-              <NumberInputField placeholder='Ex: 10'/>
-              <NumberInputStepper>
-                <NumberIncrementStepper />
-                <NumberDecrementStepper />
-              </NumberInputStepper>
-            </NumberInput>
+              <Input placeholder='Ex: 10' type='number' name="stock" onChange={handleInputs}  />
             </FormControl>
             </div>
           <FormControl>
             <FormLabel>Adicionar foto</FormLabel>
             <div className={styles.upload}>
-            {uploadImage ? <img src={URL.createObjectURL(uploadImage)} width='100%' height='100%' alt="foto do produto" /> : <img src={ UploadImage} alt="adicione a foto do seu produto" />}
-              <Input type='file' name="" className={styles.inputFile} onChange={ handleUploadImage} />
+            {file ? <img src={URL.createObjectURL(file)} width='100%' height='100%' alt="foto do produto" /> : <img src={ UploadImage} alt="adicione a foto do seu produto" />}
+              <Input type='file' name="" className={styles.inputFile} onChange={(e: any) =>  setFile(e.target.files[0])
+             } />
             </div>
           </FormControl>
-        </form>
-        <div className={styles.btns}>
-          <Button style={{ color: "#fff", background: "#B7005C" }} onClick={() => {
-            setPhrase({
-                h1: "O anúncio foi publicado",
-               p: "O anúncio está ativo e o produto disponível para venda"
-             })
-            setModalPublished(true)
-          }}>Publicar anúncio</Button>
+          <div className={styles.btns}>
+          <Button style={{ color: "#fff", background: "#B7005C" }} type="submit">Publicar anúncio</Button>
           <Button className={styles.btnCancel} onClick={() => setModalDiscardChanges(true)}>Cancelar</Button>
           </div>
+        </form>
+       
       </section>
     </main>
   )
