@@ -22,7 +22,9 @@
                 @include mixin.font('Public Sans',normal,500,1.6rem, 1.9rem, -0.382174px, #191919);
                 margin-top: 14px;
                 margin-bottom: 8px;
-                max-width: 100%
+                width: 100%;
+                max-width: 100%;
+                text-align: start;
             }
             .price{
                 @include mixin.font('Public Sans',normal,600, 2.6rem,3rem, -0.382174px, #D10070 );

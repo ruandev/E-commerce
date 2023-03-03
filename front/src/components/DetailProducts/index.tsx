@@ -35,7 +35,7 @@ const navigate = useNavigate()
                 <div className={styles.infoProduct}>
                     <h1>{productDetail?.title}</h1>
                     <p className={styles.soldBy}>Vendido e entregue por | <span>{storage?.merchant.store_name}</span></p>
-                    <p className={styles.price}>{productDetail?.unt_price}</p>
+                    <p className={styles.price}>{Number(productDetail?.unt_price)?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                     <p className={styles.paymentMethod}>Formas de pagamento</p>
                     <img className={styles.pix} src={Pix} alt="pix" />
                     <div className={styles.quantity}>

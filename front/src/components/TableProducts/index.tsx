@@ -20,13 +20,13 @@ export default function TableProducts() {
   
   async function handleProducts() {
   try {
-    const {data} = await api.get("/product/findAll", headers(storage?.token))
+    const { data } = await api.get(`/product/findAllForMerchant/${storage?.merchant?.id}`, headers(storage?.token))
     setProducts(data)
   } catch (error) {
     console.log(error)
   }
   } 
-
+console.log(products)
 
   return (
     <main className={styles.main}>
@@ -49,8 +49,8 @@ export default function TableProducts() {
                   <Th>Editar/Apagar</Th>
                 </Tr>
               </Thead>
-              {products ? <UncreatedProducts/> :
-              <MyProducts setModalDeleteProduct={setModalDeleteProduct}  products={products} />}
+              {products ?  <MyProducts setModalDeleteProduct={setModalDeleteProduct}  products={products} />
+               : <UncreatedProducts/>}
             </Table>
           </TableContainer>
         </div>

@@ -4,7 +4,7 @@
     min-height: 100vh;
     padding: 30px;
     background: #F4F4F4;
-    @include mixin.flex(row, start, start);
+    @include mixin.flex(row, center, start);
     section{
         max-width: 100%;
     }
@@ -12,5 +12,6 @@
 @media screen and (min-width: 768px){
     .main{
         padding: 60px 100px;
+        @include mixin.flex(row, start, start);
     }
 }

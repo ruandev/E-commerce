@@ -31,11 +31,10 @@ export default function Products() {
     <main className={styles.main}>
       <section>
         {allProducts?.map((product: any) => {
-          console.log(product)
           return <div key={product?.id} className={styles.product} onClick={()=> handleProduct(product)}>
             <img src={product?.url_image} alt="imagem" className={styles.img} />
             <p className={styles.title}>{product?.title}</p>
-            <p className={styles.price}>{product?.unt_price}</p>
+            <p className={styles.price}>{Number(product?.unt_price)?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
           </div>
         })}
       </section>
