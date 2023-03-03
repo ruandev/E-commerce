@@ -2,11 +2,13 @@ import { Injectable } from "@nestjs/common";
 import { UsersService } from "../users/users.service";
 import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from "bcrypt";
+import { MerchantsService } from "src/merchants/merchants.service";
 
 @Injectable()
 export class AuthService {
   constructor(
     private usersService: UsersService,
+    private merchantService: MerchantsService,
     private jwtService: JwtService
   ) {}
 
@@ -26,6 +28,7 @@ export class AuthService {
     return {
       user: req.user,
       token: this.jwtService.sign(payload),
+      merchant: await this.merchantService.profile(id),
     };
   }
 }

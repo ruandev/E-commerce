@@ -30,7 +30,6 @@ export class CartProductsService {
       await this.cartProductsRepository.insert(newCartProducts);
       return newCartProducts;
     } catch (error) {
-      console.log(error);
       return error;
     }
   }

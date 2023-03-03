@@ -1,23 +1,23 @@
 import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  UploadedFile,
   Bind,
-  UseInterceptors,
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  UploadedFile,
   UseGuards,
+  UseInterceptors,
 } from "@nestjs/common";
-import { ProductsService } from "./products.service";
+import { Req } from "@nestjs/common/decorators";
+import { FileInterceptor } from "@nestjs/platform-express";
+import { Request } from "express";
+import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
 import { CreateProductDto } from "./dto/create-product.dto";
 import { UpdateProductDto } from "./dto/update-product.dto";
-import { FileInterceptor } from "@nestjs/platform-express";
-import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
-import { Query, Req } from "@nestjs/common/decorators";
-import { Request } from "express";
+import { ProductsService } from "./products.service";
 
 @Controller("product")
 export class ProductsController {

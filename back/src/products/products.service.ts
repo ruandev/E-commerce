@@ -14,7 +14,6 @@ export class ProductsService {
   ) {}
 
   async uploadImage(file: any, id: string) {
-    //OK
     try {
       if (!id) return { message: "Id esperado" };
       if (!file)
@@ -31,7 +30,6 @@ export class ProductsService {
   }
 
   async create(createProductDto: CreateProductDto, id: string) {
-    //OK
     const { category_id } = createProductDto;
     try {
       delete createProductDto.category_id;
@@ -49,7 +47,6 @@ export class ProductsService {
   }
 
   async findAll(req: Request) {
-    //ok
     const { title } = req.query;
     try {
       if (title) {
@@ -77,6 +74,8 @@ export class ProductsService {
           relations: {
             category: true,
           },
+          skip: 0,
+          take: 15,
         });
         return allProducts;
       }
@@ -86,7 +85,6 @@ export class ProductsService {
   }
 
   async findAllForMerchant(id: string) {
-    //ok
     try {
       const allProducts = await this.productRepository.find({
         select: {
@@ -108,7 +106,6 @@ export class ProductsService {
   }
 
   async findOne(id: string) {
-    //ok
     try {
       const oneProduct = await this.productRepository.find({
         where: { id },
@@ -128,7 +125,6 @@ export class ProductsService {
   }
 
   async update(id: string, updateProductDto: UpdateProductDto) {
-    //OK
     const { path_image_delete } = updateProductDto;
     const { category_id } = updateProductDto;
 
@@ -151,9 +147,8 @@ export class ProductsService {
   }
 
   async updateStock(id: string, stock: number) {
-    //OK
     try {
-      const product = await this.productRepository.findOneBy({ id });
+      const product = await this.productRepository.findOneBy({});
       const currentStock = product.stock - stock;
       if (currentStock <= 0) return { message: `${product.title} esgotado!` };
       await this.productRepository.update(id, { stock: currentStock });
@@ -163,7 +158,6 @@ export class ProductsService {
   }
 
   async remove(id: string) {
-    //Ok
     try {
       const product = await this.productRepository.findOneBy({ id });
 

@@ -15,7 +15,6 @@ import { CartProductsModule } from "src/cart-products/cart-products.module";
 import { CartsModule } from "src/carts/carts.module";
 import { config } from "dotenv";
 config();
-console.log();
 @Module({
   imports: [
     forwardRef(() => UsersModule),

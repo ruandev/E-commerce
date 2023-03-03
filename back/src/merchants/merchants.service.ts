@@ -33,8 +33,8 @@ export class MerchantsService {
       const { raw: merchant } = await this.merchantRepository.insert(newUser);
 
       return {
-        message: "Loja criada com sucesso!",
-        merchant_id: merchant[0].id,
+        store_name: store_name,
+        id: merchant[0].id,
       };
     } catch (error) {
       if (error.code === "23505") {
@@ -46,7 +46,8 @@ export class MerchantsService {
 
   async profile(id: string) {
     const merchant = await this.merchantRepository.findOneBy({ user: { id } });
-    return { mechant_id: merchant.id };
+    if (!merchant) return "";
+    return merchant.id;
   }
 
   async update(id: string, updateMerchantDto: UpdateMerchantDto) {
