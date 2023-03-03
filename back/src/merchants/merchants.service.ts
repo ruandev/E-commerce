@@ -47,7 +47,7 @@ export class MerchantsService {
   async profile(id: string) {
     const merchant = await this.merchantRepository.findOneBy({ user: { id } });
     if (!merchant) return "";
-    return merchant.id;
+    return { id: merchant.id, store_name: merchant.store_name };
   }
 
   async update(id: string, updateMerchantDto: UpdateMerchantDto) {
