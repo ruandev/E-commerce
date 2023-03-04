@@ -15,6 +15,7 @@
         
         .store{
             @include mixin.flex(column, center, center);
+            cursor: pointer;
             p{
                 display: none;
             }
