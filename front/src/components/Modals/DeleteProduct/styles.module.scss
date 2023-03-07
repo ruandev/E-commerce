@@ -14,7 +14,8 @@
         position: relative;
         background: #FCFCFC;
         border-radius: 6px;
-        padding: 30px;
+        
+        width: 80%;
         background-color: #fff;
         img{
             position: absolute;
@@ -27,7 +28,7 @@
             margin-bottom: 24px;
         }
         p{
-            word-wrap: break-word;
+            word-break: break-all;
             @include mixin.font('Public Sans',normal, 400, 1.8rem, 2.2rem, -0.382174px, #191919);
             margin-bottom: 24px;
         }

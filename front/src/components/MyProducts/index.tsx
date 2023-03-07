@@ -1,19 +1,20 @@
+import { useState } from 'react'
 import Pencil from "../../assets/pencil.svg"
 import Trash from "../../assets/trash.svg"
-import { products } from '../../products'
+import DeleteProduct from '../Modals/DeleteProduct'
 import styles from "./styles.module.scss"
 interface Props {
-    setModalDeleteProduct: any,
     products: any,
 
 }
-export default function MyProducts({setModalDeleteProduct, products}: Props) {
-    function handleDeleteProduct(product: any) {
-        setModalDeleteProduct(true)    
+export default function MyProducts({products}: Props) {
+    function handleDeleteProduct(product: any) {  
+        setModalDeleteProduct(true)
     }
-    
+    const [modalDeleteProduct,setModalDeleteProduct ] = useState(false)
     return (
         <tbody className={styles.tbody}>
+            {modalDeleteProduct && <DeleteProduct setModalDeleteProduct={setModalDeleteProduct} />}
         {products.map((product: any) => {
             return <tr key={product.id}>
             <td className={styles.tdImage}><img src={product.url_image} alt={product.name}/></td>

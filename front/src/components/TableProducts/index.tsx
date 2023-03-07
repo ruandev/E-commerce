@@ -10,7 +10,6 @@ import headers from '../../utils/Token';
 import useStorage from '../../hooks/Storage/useStorage';
 export default function TableProducts() {
   const navigate = useNavigate()
-  const [modalDeleteProduct, setModalDeleteProduct] = useState(false)
   const [products, setProducts] = useState([])
   const { storage, setStorage } = useStorage()
 
@@ -30,7 +29,6 @@ console.log(products)
 
   return (
     <main className={styles.main}>
-      {modalDeleteProduct && <DeleteProduct setModalDeleteProduct={setModalDeleteProduct} />}
       <section className={styles.createProduct}> 
           <p>Meus produtos</p>
           <Button onClick={() => navigate("/cadastrar-produto")}>Criar anúncio</Button>
@@ -49,7 +47,7 @@ console.log(products)
                   <Th>Editar/Apagar</Th>
                 </Tr>
               </Thead>
-              {products ?  <MyProducts setModalDeleteProduct={setModalDeleteProduct}  products={products} />
+              {products ?  <MyProducts products={products} />
                : <UncreatedProducts/>}
             </Table>
           </TableContainer>
