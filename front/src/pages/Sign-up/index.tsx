@@ -9,7 +9,7 @@ export default function SignUp() {
   const [circle, setCircle] = useState(false)
   const navigate = useNavigate()
   const [form, setForm] = useState<IFormCadaster>({
-    frist_name: "",
+    first_name: "",
     last_name: "",
     email: "",
     password: "",
@@ -55,7 +55,7 @@ export default function SignUp() {
         <form onSubmit={handleSubmit}>
           <FormControl >
             <FormLabel className={styles.label}>Nome</FormLabel>
-            <Input type='text' placeholder="Insira seu nome" onChange={handleInput} name="frist_name"/>
+            <Input type='text' placeholder="Insira seu nome" onChange={handleInput} name="first_name"/>
           </FormControl>
 
           <FormControl >

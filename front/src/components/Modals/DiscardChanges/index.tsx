@@ -21,6 +21,9 @@ export default function DiscardChanges({ fnCloseModal }: Props) {
     if (window.location.pathname === "/cadastrar-produto") {
       navigate("/minha-loja")
     }
+    if (window.location.pathname === "/editar-produto") {
+      navigate("/minha-loja")
+    }
   }
   
   return (

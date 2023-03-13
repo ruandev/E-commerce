@@ -2,7 +2,7 @@ import styles from "./styles.module.scss";
 import Logo from "../../../assets/logo.svg"
 import X from "../../../assets/x.svg"
 import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
-import { removeOverflow } from '../../../utils/handleOverFlow';
+import { addOverFlow, removeOverflow } from '../../../utils/handleOverFlow';
 import DiscardChanges from '../DiscardChanges';
 import useDiscardChanges from "../../../hooks/DiscardChanges/useDiscardChanges"
 import CancelDeleteUser from '../CancelDeleteUser';
@@ -16,12 +16,12 @@ interface Props {
 }
 export default function OptionsUser({ setModalUser }: Props) {
     const [confirmDeleteUser, setConfirmDeleteUser] = useState(false)
-    const {storage, remove} = useStorage()
+    const {storage, remove, setStorage} = useStorage()
     const { modalDiscardChanges, setModalDiscardChanges }: any = useDiscardChanges()
     const [circle, setCircle] = useState(false)
     const navigate = useNavigate()
     const [form, setForm] = useState<any>({
-        frist_name: storage.user.frist_name,
+        first_name: storage.user.first_name,
         last_name: storage.user.last_name,
         email: storage.user.email,
         password: ""
@@ -36,7 +36,13 @@ export default function OptionsUser({ setModalUser }: Props) {
         delete form?.cpassword
         try {
             await api.patch(`/user/update/${storage.user.id}`, form, headers(storage.token))
-            removeOverflow()
+            storage.user = {
+                id: storage.user.id,
+                first_name: form?.first_name,
+                last_name: form?.last_name,
+                email: form?.email}
+            setStorage(storage)
+            addOverFlow()
         } catch (error) {
             console.log(error)
         }
@@ -58,7 +64,7 @@ export default function OptionsUser({ setModalUser }: Props) {
                     
                     <FormControl>
                         <FormLabel>Nome</FormLabel>
-                        <Input type='text' name="frist_name" value={form.frist_name} onChange={handleChangeInput} />
+                        <Input type='text' name="first_name" value={form.first_name} onChange={handleChangeInput} />
                     </FormControl>
                     
                     <FormControl>
