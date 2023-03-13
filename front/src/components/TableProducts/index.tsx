@@ -25,7 +25,7 @@ export default function TableProducts() {
     console.log(error)
   }
   } 
-console.log(products)
+
 
   return (
     <main className={styles.main}>
@@ -47,7 +47,7 @@ console.log(products)
                   <Th>Editar/Apagar</Th>
                 </Tr>
               </Thead>
-              {products ?  <MyProducts products={products} />
+              {products ?  <MyProducts products={products} handleProducts={handleProducts} />
                : <UncreatedProducts/>}
             </Table>
           </TableContainer>

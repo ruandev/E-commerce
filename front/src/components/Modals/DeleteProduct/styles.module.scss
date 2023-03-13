@@ -14,9 +14,9 @@
         position: relative;
         background: #FCFCFC;
         border-radius: 6px;
-        
-        width: 80%;
+        white-space: pre-wrap;
         background-color: #fff;
+        padding: 30px;
         img{
             position: absolute;
             top: 12.5px;
@@ -28,7 +28,6 @@
             margin-bottom: 24px;
         }
         p{
-            word-break: break-all;
             @include mixin.font('Public Sans',normal, 400, 1.8rem, 2.2rem, -0.382174px, #191919);
             margin-bottom: 24px;
         }
@@ -43,6 +42,8 @@
                 box-sizing: border-box;
                 cursor: pointer;
                 @include mixin.font('Public Sans',normal, 600, 1.8rem, 2.2rem, -0.382174px, #B7165D);
+                min-width: 106.13px;
+                @include mixin.flex(row, center,center);
             }
         }
         }

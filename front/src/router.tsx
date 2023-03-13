@@ -2,6 +2,7 @@ import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import Cart from './components/Cart';
 import CreateAt from './components/CreateAd';
 import DetailProduct from './components/DetailProducts';
+import EditAt from './components/EditAd';
 import HeaderHome from './components/HeaderHome';
 import HeaderStore from './components/HeaderStore';
 import useStorage from "./hooks/Storage/useStorage";
@@ -56,6 +57,12 @@ export default function MainRoutes() {
 					<div>
 						<HeaderStore/>
 						<CreateAt />
+					</div>
+					} />
+				<Route path='/editar-produto' element={
+					<div>
+						<HeaderStore/>
+						<EditAt />
 					</div>
 					} />
 				

@@ -14,6 +14,7 @@
         div{
             padding: 20px;
             max-width: 280px;
+            height: 349.22px;
             background: #FCFCFC;
             border-radius: 8px;
             @include mixin.flex(column, start,center);
@@ -25,11 +26,17 @@
                 width: 100%;
                 max-width: 100%;
                 text-align: start;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow:    ellipsis;
             }
             .price{
                 @include mixin.font('Public Sans',normal,600, 2.6rem,3rem, -0.382174px, #D10070 );
                 text-align: start;
                 width: 100%;
+            }
+            img{
+                min-height: 231.22px;
             }
 
         }

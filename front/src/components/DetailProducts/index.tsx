@@ -31,7 +31,7 @@ const navigate = useNavigate()
                 <span className={styles.productTitle}>{productDetail?.title} </span></p>
             <section className={styles.product}>
 
-                <img src={productDetail?.url_image} alt="produto" />
+                <img src={productDetail?.url_image} alt="produto" className={styles.productImage}/>
                 <div className={styles.infoProduct}>
                     <h1>{productDetail?.title}</h1>
                     <p className={styles.soldBy}>Vendido e entregue por | <span>{storage?.merchant.store_name}</span></p>
