@@ -14,7 +14,7 @@ export class User {
   id: string;
 
   @Column({ type: "text" })
-  frist_name: string;
+  first_name: string;
 
   @Column({ type: "text" })
   last_name: string;
