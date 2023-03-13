@@ -1,5 +1,6 @@
 import { DataSource } from "typeorm";
-
+import { config } from "dotenv";
+config();
 export const databaseProviders = [
   {
     provide: "DATA_SOURCE",
