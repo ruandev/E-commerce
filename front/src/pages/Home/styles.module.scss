@@ -5,9 +5,7 @@
     padding: 30px;
     background: #F4F4F4;
     @include mixin.flex(row, center, start);
-    section{
-        max-width: 100%;
-    }
+   
 }
 @media screen and (min-width: 768px){
     .main{

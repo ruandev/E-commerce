@@ -132,7 +132,7 @@ export default function EditAt() {
             </div>
           </FormControl>
           <div className={styles.btns}>
-          <Button style={{ color: "#fff", background: "#B7005C" }} type="submit">{circle ? <CircularProgress isIndeterminate color='green.400' thickness='10px' size='35px' /> : "Publicar anúncio"}</Button>
+          <Button style={{ color: "#fff", background: "#B7005C" }} type="submit">{circle ? <CircularProgress isIndeterminate color='green.400' thickness='10px' size='35px' /> : "Atualizar anúncio"}</Button>
           <Button className={styles.btnCancel} onClick={() => setModalDiscardChanges(true)}>Cancelar</Button>
           </div>
         </form>

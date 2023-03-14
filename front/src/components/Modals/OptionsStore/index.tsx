@@ -14,7 +14,7 @@ import api from '../../../api';
 import headers from '../../../utils/Token';
 
 export default function OptionsStore({ fnCloseModal }: Props) {
-    const { storage } = useStorage()
+    const { storage, setStorage } = useStorage()
     const toast = useToast()
   function handleToast() {
     toast({
@@ -25,21 +25,23 @@ export default function OptionsStore({ fnCloseModal }: Props) {
       status: 'success',
     })
   }
-    const [storeName, setStoreName] = useState({
+    const [form, setForm] = useState({
     store_name: storage.merchant.store_name
     })
     const [circle,setCircle] = useState(false)
     const { modalDiscardChanges, setModalDiscardChanges } = useDiscardChanges()
     const [confirmDeleteStore, setConfirmDeleteStore] = useState(false)
     function handleStoreName(e: any) {
-        setStoreName({...storeName,[e.target.name]: e.target.value})
+        setForm({...form,[e.target.name]: e.target.value})
     }
     async function updateStoreName(e: any) {
         e.preventDefault()
         try {
             setCircle(true)
-            await api.patch(`/merchant/update/${storage.user.id}`, storeName, headers(storage.token))
+            await api.patch(`/merchant/update/${storage.user.id}`, form, headers(storage.token))
             handleToast()
+            storage.merchant.store_name = form.store_name
+            setStorage(storage)
             setTimeout(() => {
                 fnCloseModal(false)
             }, 1000);
@@ -64,7 +66,7 @@ export default function OptionsStore({ fnCloseModal }: Props) {
                     
                     <FormControl>
                         <FormLabel>Nome da loja</FormLabel>
-                        <Input type='text' value={storeName.store_name} name="store_name" onChange={handleStoreName}/>
+                        <Input type='text' value={form.store_name} name="store_name" onChange={handleStoreName}/>
                     </FormControl>
 
                     

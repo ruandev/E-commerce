@@ -8,6 +8,7 @@ import { ProductProvider } from './context/ProductContext';
 import { DiscardChangesProvider } from './context/DiscardChanges';
 import { StorageProvider } from './context/StorageContext';
 import { ProductToEditProvider } from './context/ProductToEdit';
+import { SearchProvider } from './context/SearchContext';
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <ChakraProvider>
@@ -16,7 +17,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
           <DiscardChangesProvider>
             <StorageProvider>
               <ProductToEditProvider>
-                <MainRoutes />
+                <SearchProvider>
+                  <MainRoutes />
+                </SearchProvider>
               </ProductToEditProvider>
             </StorageProvider>
           </DiscardChangesProvider>
