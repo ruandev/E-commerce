@@ -1,17 +1,18 @@
 import { DataSource } from "typeorm";
 import { config } from "dotenv";
 config();
+
 export const databaseProviders = [
   {
     provide: "DATA_SOURCE",
     useFactory: async () => {
       const dataSource = new DataSource({
         type: "postgres",
-        host: "localhost",
-        port: 5432,
-        username: "postgres",
-        password: "postgres",
-        database: "market_place",
+        host: process.env.DB_HOST,
+        port: Number(process.env.DB_HOST),
+        username: process.env.DB_USERNAME,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
         entities: [__dirname + "/../**/*.entity{.ts,.js}"],
         synchronize: true,
       });

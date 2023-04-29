@@ -7,7 +7,7 @@ export class PaymentMethod {
   id: string;
 
   @Column({ type: "text" })
-  description: string;
+  method: string;
 
   @OneToOne(() => Cart, (cart) => cart.payment_method)
   cart: Cart;
