@@ -6,33 +6,44 @@ import { Repository } from "typeorm";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { User } from "./entities/user.entity";
+import { CartsService } from "src/carts/carts.service";
 
 @Injectable()
 export class UsersService {
   constructor(
     @Inject(forwardRef(() => MerchantsService))
     private readonly merchantService: MerchantsService,
+    private readonly cartService: CartsService,
     @Inject("USER_REPOSITORY")
     private userRepository: Repository<User>
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    const { email, password } = createUserDto;
-    const validationEmail = await this.userRepository.findOneBy({
-      email,
-    });
+    try {
+      const { email, password } = createUserDto;
+      const validationEmail = await this.userRepository.findOneBy({
+        email,
+      });
 
-    if (validationEmail) return { message: "E-mail já cadastrado" };
+      if (validationEmail) return { message: "E-mail já cadastrado" };
 
-    createUserDto.password = await bcrypt.hash(password, 10);
+      createUserDto.password = await bcrypt.hash(password, 10);
 
-    await this.userRepository.insert(createUserDto);
-    return createUserDto;
+      const { raw } = await this.userRepository.insert(createUserDto);
+      await this.cartService.create(raw[0].id);
+      return;
+    } catch (error) {
+      return error;
+    }
   }
 
   async findUserByEmail(email: string): Promise<User | null> {
     //OK
-    return this.userRepository.findOneBy({ email });
+    try {
+      return this.userRepository.findOneBy({ email });
+    } catch (error) {
+      return error;
+    }
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {

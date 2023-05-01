@@ -6,9 +6,15 @@ import { MerchantsModule } from "src/merchants/merchants.module";
 import { userProviders } from "./providers/user.providers";
 import { UsersController } from "./users.controller";
 import { UsersService } from "./users.service";
+import { CartsModule } from "../carts/carts.module";
 
 @Module({
-  imports: [DatabaseModule, forwardRef(() => AuthModule), MerchantsModule],
+  imports: [
+    DatabaseModule,
+    forwardRef(() => AuthModule),
+    MerchantsModule,
+    CartsModule,
+  ],
   controllers: [UsersController],
   providers: [...userProviders, UsersService],
   exports: [UsersService],

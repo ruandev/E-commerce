@@ -46,7 +46,6 @@ export class CartProductsService {
           cart: true,
         },
       });
-
       const amount = allProducts
         .reduce((acc, val) => {
           return Number(acc) + Number(val.quantity) * Number(val.unt_price);
