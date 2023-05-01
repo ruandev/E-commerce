@@ -1,4 +1,4 @@
-import { Button, CircularProgress, FormControl, FormLabel, Input, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Select, Textarea } from '@chakra-ui/react';
+import { Button, CircularProgress, FormControl, FormLabel, Input, Select, Textarea } from '@chakra-ui/react';
 import styles from "./styles.module.scss";
 import UploadImage from "../../assets/addImage.svg";
 import { useEffect, useState } from 'react';
@@ -29,12 +29,13 @@ export default function CreateAt() {
   const [modalPublished, setModalPublished] = useState(false)
   const [phrase, setPhrase] = useState({})
   const [circle, setCircle] = useState(false)
+
   async function handleCategories() {
     try {
-      const { data } = await api.get('/categories', headers(storage?.token))
+      const { data } = await api.get('/category/categories', headers(storage?.token))
       setCategories(data)
     } catch (error) {
-      return error
+      console.log(error)
     }
   }
   useEffect(() => {
@@ -111,14 +112,14 @@ export default function CreateAt() {
           <div className={styles.priceAndStock}>
             <FormControl>
               <FormLabel className={styles.price} >Preço</FormLabel>
-              <Input type='number' placeholder='R$' name="unt_price" onChange={handleInputs}/>
+              <Input placeholder='R$' name="unt_price" onChange={handleInputs}/>
             </FormControl>
           <FormControl>
               <FormLabel className={styles.stock}> Estoque</FormLabel>
               <Input placeholder='Ex: 10' type='number' name="stock" onChange={handleInputs}  />
             </FormControl>
           </div>
-          <p>* Aconselhamos adicionar fotos com o tamanho minímo de 115 x 115px para melhor resolução!</p>
+          <p>* Aconselhamos adicionar fotos com o tamanho de 342 x 342 pixeis para melhor resolução!</p>
           <FormControl>
             <FormLabel>Adicionar foto</FormLabel>
             <div className={styles.upload}>

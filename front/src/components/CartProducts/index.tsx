@@ -1,8 +1,9 @@
 import { Button } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Trash from "../../assets/trash.svg";
 import styles from "./styles.module.scss";
-export default function CartProducts({product}: any) {
+
+export default function CartProducts({ product }: any) {
   const [number, setNumber] = useState(1)
   function handleCount(signal: string) {
     if (number >= 1 && signal === '+') {
@@ -12,9 +13,12 @@ export default function CartProducts({product}: any) {
       return setNumber(number - 1)
     }
   }
+  console.log()
   return (
+    
     <tbody className={styles.tbody}>
-      <tr key={product?.id}>
+ 
+      <tr>
         <td className={styles.tdImage}><img src={product?.image} alt="produto" /></td>
         <td>{product?.title}</td>
         <td>{product?.price}</td>
